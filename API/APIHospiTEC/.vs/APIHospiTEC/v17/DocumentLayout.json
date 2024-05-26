@@ -1,7 +1,19 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\APIHospiTEC\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\API\\APIHospiTEC\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{92D81215-D28A-4D2E-9AF1-22FD3EACF30D}|NewFolder1{92D81215-D28A-4D2E-9AF1-22FD3EACF30D}|C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\API\\APIHospiTEC\\Paciente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92D81215-D28A-4D2E-9AF1-22FD3EACF30D}|NewFolder1{92D81215-D28A-4D2E-9AF1-22FD3EACF30D}|solutionrelative:Paciente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92D81215-D28A-4D2E-9AF1-22FD3EACF30D}|NewFolder1{92D81215-D28A-4D2E-9AF1-22FD3EACF30D}|C:\\Users\\User\\Documents\\GitHub\\LabCE\\API\\API\\Models\\LoginModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF3CC19A-FC05-4626-85A9-9167C5B13D67}|APIHospiTEC\\APIHospiTEC.csproj|c:\\users\\user\\documents\\github\\hospitec\\api\\apihospitec\\apihospitec\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF3CC19A-FC05-4626-85A9-9167C5B13D67}|APIHospiTEC\\APIHospiTEC.csproj|solutionrelative:apihospitec\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +21,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "WeatherForecast.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\API\\APIHospiTEC\\APIHospiTEC\\WeatherForecast.cs",
+              "RelativeDocumentMoniker": "APIHospiTEC\\WeatherForecast.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\API\\APIHospiTEC\\APIHospiTEC\\WeatherForecast.cs",
+              "RelativeToolTip": "APIHospiTEC\\WeatherForecast.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-26T07:33:56.493Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Paciente.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\API\\APIHospiTEC\\Paciente.cs",
+              "RelativeDocumentMoniker": "Paciente.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\API\\APIHospiTEC\\Paciente.cs",
+              "RelativeToolTip": "Paciente.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-26T07:24:59.571Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoginModel.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\LabCE\\API\\API\\Models\\LoginModel.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\LabCE\\API\\API\\Models\\LoginModel.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\LabCE\\API\\API\\Models\\LoginModel.cs",
+              "RelativeToolTip": "..\\..\\..\\LabCE\\API\\API\\Models\\LoginModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-26T07:22:54.672Z",
+              "EditorCaption": ""
             }
           ]
         }
