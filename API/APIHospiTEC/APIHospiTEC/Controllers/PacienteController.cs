@@ -2,6 +2,7 @@
 using APIHospiTEC.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace APIHospiTEC.Controllers
@@ -22,17 +23,32 @@ namespace APIHospiTEC.Controllers
         [Route("crear_paciente")]
         public async Task<IActionResult> CrearPaciente(Paciente modelo)
         {
-            await _context.Paciente.AddAsync(modelo);
+            await _context.paciente.AddAsync(modelo);
             await _context.SaveChangesAsync();
 
             return Ok();
         }
+
+        [HttpGet]
+        [Route("paciente/{cedula}")]
+        public async Task<ActionResult<Paciente>> ObtenerPacientePorCedula(int cedula)
+        {
+            var pac = await _context.paciente.FindAsync(cedula);
+            
+            if (pac == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(pac);
+        }
+
         [HttpDelete]
         [Route("eliminar_paciente")]
         public async Task<IActionResult> EliminarPaciente(string cedula)
         {
-            var paciente_borrado = await _context.Paciente.FindAsync(cedula);
-            _context.Paciente.Remove(paciente_borrado!);
+            var paciente_borrado = await _context.paciente.FindAsync(cedula);
+            _context.paciente.Remove(paciente_borrado!);
             await _context.SaveChangesAsync();
             return Ok();
         }

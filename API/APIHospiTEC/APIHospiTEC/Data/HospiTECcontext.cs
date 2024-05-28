@@ -8,6 +8,6 @@ namespace APIHospiTEC.Data
         public HospiTECcontext(DbContextOptions<HospiTECcontext> options) : base(options)
         {
         }
-        public DbSet<Paciente> Paciente { get; set; }
+        public DbSet<Paciente> paciente { get; set; }
     }
 }
