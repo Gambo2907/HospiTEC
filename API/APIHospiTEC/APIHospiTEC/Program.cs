@@ -1,4 +1,7 @@
 
+using APIHospiTEC.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace APIHospiTEC
 {
     public class Program
@@ -14,6 +17,10 @@ namespace APIHospiTEC
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            var connectionString = builder.Configuration.GetConnectionString("PostgreSQLConnection");
+            builder.Services.AddDbContext<HospiTECcontext>(options => 
+            options.UseNpgsql(connectionString));
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -22,6 +29,12 @@ namespace APIHospiTEC
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+           app.UseCors(builder =>
+           builder.AllowAnyOrigin() // Permite solicitudes desde cualquier origen
+                  .AllowAnyMethod() // Métodos HTTP permitidos
+                  .AllowAnyHeader()); // Encabezados permitidos
+
 
             app.UseHttpsRedirection();
 

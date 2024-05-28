@@ -1,6 +1,0 @@
-@APIHospiTEC_HostAddress = http://localhost:5293
-
-GET {{APIHospiTEC_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

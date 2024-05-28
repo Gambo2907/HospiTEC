@@ -5,12 +5,6 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIHospiTEC", "APIHospiTEC\APIHospiTEC.csproj", "{EF3CC19A-FC05-4626-85A9-9167C5B13D67}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{92D81215-D28A-4D2E-9AF1-22FD3EACF30D}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\LabCE\API\API\Models\LoginModel.cs = ..\..\..\LabCE\API\API\Models\LoginModel.cs
-		Paciente.cs = Paciente.cs
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

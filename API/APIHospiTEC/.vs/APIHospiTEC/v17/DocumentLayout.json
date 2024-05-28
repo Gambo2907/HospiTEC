@@ -3,11 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\API\\APIHospiTEC\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{92D81215-D28A-4D2E-9AF1-22FD3EACF30D}|Models{92D81215-D28A-4D2E-9AF1-22FD3EACF30D}|C:\\Users\\User\\Documents\\GitHub\\LabCE\\API\\API\\Models\\LoginModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EF3CC19A-FC05-4626-85A9-9167C5B13D67}|APIHospiTEC\\APIHospiTEC.csproj|c:\\users\\user\\documents\\github\\hospitec\\api\\apihospitec\\apihospitec\\controllers\\pacientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF3CC19A-FC05-4626-85A9-9167C5B13D67}|APIHospiTEC\\APIHospiTEC.csproj|solutionrelative:apihospitec\\controllers\\pacientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{92D81215-D28A-4D2E-9AF1-22FD3EACF30D}|Models{92D81215-D28A-4D2E-9AF1-22FD3EACF30D}|C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\API\\APIHospiTEC\\Paciente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{92D81215-D28A-4D2E-9AF1-22FD3EACF30D}|Models{92D81215-D28A-4D2E-9AF1-22FD3EACF30D}|solutionrelative:Paciente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EF3CC19A-FC05-4626-85A9-9167C5B13D67}|APIHospiTEC\\APIHospiTEC.csproj|c:\\users\\user\\documents\\github\\hospitec\\api\\apihospitec\\apihospitec\\data\\hospiteccontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF3CC19A-FC05-4626-85A9-9167C5B13D67}|APIHospiTEC\\APIHospiTEC.csproj|solutionrelative:apihospitec\\data\\hospiteccontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF3CC19A-FC05-4626-85A9-9167C5B13D67}|APIHospiTEC\\APIHospiTEC.csproj|c:\\users\\user\\documents\\github\\hospitec\\api\\apihospitec\\apihospitec\\models\\paciente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF3CC19A-FC05-4626-85A9-9167C5B13D67}|APIHospiTEC\\APIHospiTEC.csproj|solutionrelative:apihospitec\\models\\paciente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF3CC19A-FC05-4626-85A9-9167C5B13D67}|APIHospiTEC\\APIHospiTEC.csproj|c:\\users\\user\\documents\\github\\hospitec\\api\\apihospitec\\apihospitec\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{EF3CC19A-FC05-4626-85A9-9167C5B13D67}|APIHospiTEC\\APIHospiTEC.csproj|solutionrelative:apihospitec\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF3CC19A-FC05-4626-85A9-9167C5B13D67}|APIHospiTEC\\APIHospiTEC.csproj|c:\\users\\user\\documents\\github\\hospitec\\api\\apihospitec\\apihospitec\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF3CC19A-FC05-4626-85A9-9167C5B13D67}|APIHospiTEC\\APIHospiTEC.csproj|solutionrelative:apihospitec\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -17,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -25,28 +38,67 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Paciente.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\API\\APIHospiTEC\\Paciente.cs",
-              "RelativeDocumentMoniker": "Paciente.cs",
-              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\API\\APIHospiTEC\\Paciente.cs",
-              "RelativeToolTip": "Paciente.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAvAAAA",
+              "DocumentIndex": 0,
+              "Title": "PacienteController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\API\\APIHospiTEC\\APIHospiTEC\\Controllers\\PacienteController.cs",
+              "RelativeDocumentMoniker": "APIHospiTEC\\Controllers\\PacienteController.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\API\\APIHospiTEC\\APIHospiTEC\\Controllers\\PacienteController.cs",
+              "RelativeToolTip": "APIHospiTEC\\Controllers\\PacienteController.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAywCIAAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-26T07:24:59.571Z",
+              "WhenOpened": "2024-05-28T07:07:59.534Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "LoginModel.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\LabCE\\API\\API\\Models\\LoginModel.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\LabCE\\API\\API\\Models\\LoginModel.cs",
-              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\LabCE\\API\\API\\Models\\LoginModel.cs",
-              "RelativeToolTip": "..\\..\\..\\LabCE\\API\\API\\Models\\LoginModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "DocumentIndex": 1,
+              "Title": "HospiTECcontext.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\API\\APIHospiTEC\\APIHospiTEC\\Data\\HospiTECcontext.cs",
+              "RelativeDocumentMoniker": "APIHospiTEC\\Data\\HospiTECcontext.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\API\\APIHospiTEC\\APIHospiTEC\\Data\\HospiTECcontext.cs",
+              "RelativeToolTip": "APIHospiTEC\\Data\\HospiTECcontext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAA1AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-26T07:22:54.672Z",
+              "WhenOpened": "2024-05-28T07:02:39.785Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\API\\APIHospiTEC\\APIHospiTEC\\appsettings.json",
+              "RelativeDocumentMoniker": "APIHospiTEC\\appsettings.json",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\API\\APIHospiTEC\\APIHospiTEC\\appsettings.json",
+              "RelativeToolTip": "APIHospiTEC\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-28T05:08:20.906Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\API\\APIHospiTEC\\APIHospiTEC\\Program.cs",
+              "RelativeDocumentMoniker": "APIHospiTEC\\Program.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\API\\APIHospiTEC\\APIHospiTEC\\Program.cs",
+              "RelativeToolTip": "APIHospiTEC\\Program.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAkAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T05:03:12.309Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Paciente.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\API\\APIHospiTEC\\APIHospiTEC\\Models\\Paciente.cs",
+              "RelativeDocumentMoniker": "APIHospiTEC\\Models\\Paciente.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\API\\APIHospiTEC\\APIHospiTEC\\Models\\Paciente.cs",
+              "RelativeToolTip": "APIHospiTEC\\Models\\Paciente.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T04:49:59.743Z",
               "EditorCaption": ""
             }
           ]
