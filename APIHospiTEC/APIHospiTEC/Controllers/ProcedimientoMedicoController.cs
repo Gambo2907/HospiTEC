@@ -21,17 +21,30 @@ namespace APIHospiTEC.Controllers
         [Route("crear_procedimiento_medico")]
         public async Task<IActionResult> InsertProcedimientoMedico(ProcedimientoMedico modelo)
         {
-            var result = await _postgresql.InsertProcedimientoMedicoAsync(modelo.nombre, modelo.cantdias);
+            var result = await _postgresql.InsertProcedimientoMedicoAsync(modelo.nombre,modelo.cantdias);
             return Ok(result);
 
         }
         [HttpGet]
+        [Route("procedimientos_medicos")]
         public async Task<IActionResult> GetProcedimientosMedicos()
         {
             var data = await _postgresql.GetProcedimientosMedicosAsync();
             return Ok(data);
         }
 
-        
+        [HttpGet]
+        [Route("procedimiento_medico/({nombre})")]
+        public async Task<IActionResult> GetProcedimientoMedico(string nombre)
+        {
+            var data = await _postgresql.GetProcedimientoMedicoPorNombreAsync(nombre);
+            if (data == null)
+            {
+                return NotFound();
+            }
+            return Ok(data);
+        }
+
+
     }
 }

@@ -30,6 +30,50 @@ namespace APIHospiTEC.Services
             
         }
 
+        public async Task<Dictionary<string, object>> GetProcedimientoMedicoPorNombreAsync(string nombre)
+        {
+            var query = $"SELECT * FROM procedimiento_medico WHERE nombre = @nombre";
+            var parameters = new NpgsqlParameter[]
+            {
+            new NpgsqlParameter("@nombre", nombre)
+            };
+            var dataTable = await _dataAccess.ExecuteQueryAsync(query, parameters);
+            return dataTable.Rows.Count > 0 ? ConvertDataRowToDictionary(dataTable.Rows[0]) : null;
+        }
+
+
+        //Inserta un paciente en la tabla paciente de la db 
+        public async Task<int> InsertPacienteAsync(string nombre, string ap1, string ap2, int cedula, DateOnly nacimiento,
+            string? direccion, string correo, string password)
+        {
+            var query = $"INSERT INTO " +
+                $"paciente " +
+                $"VALUES ('{nombre}','{ap1}','{ap2}','{cedula}','{nacimiento}','{direccion}','{correo}','{password}')";
+            return await _dataAccess.ExecuteNonQueryAsync(query);
+
+        }
+
+        //Obtiene los pacientes que hay en la db 
+        public async Task<List<Dictionary<string, object>>> GetPacientesAsync()
+        {
+            var query = "SELECT nombre,ap1,ap2,cedula,nacimiento,direccion,correo " +
+                "FROM paciente";
+            var dataTable = await _dataAccess.ExecuteQueryAsync(query);
+            return ConvertDataTableToList(dataTable);
+        }
+
+        public async Task<Dictionary<string, object>> GetPacientePorCedulaAsync(int cedula)
+        {
+            var query = $"SELECT nombre,ap1,ap2,cedula,nacimiento,direccion,correo " +
+                $"FROM procedimiento_medico WHERE cedula = @cedula";
+            var parameters = new NpgsqlParameter[]
+            {
+            new NpgsqlParameter("@cedula", cedula)
+            };
+            var dataTable = await _dataAccess.ExecuteQueryAsync(query, parameters);
+            return dataTable.Rows.Count > 0 ? ConvertDataRowToDictionary(dataTable.Rows[0]) : null;
+        }
+
         // Método para convertir DataTable a List<Dictionary<string, object>>
         public List<Dictionary<string, object>> ConvertDataTableToList(DataTable dataTable)
         {
@@ -48,6 +92,19 @@ namespace APIHospiTEC.Services
             }
 
             return list;
+        }
+
+        // Método para convertir DataRow a Dictionary<string, object>
+        private Dictionary<string, object> ConvertDataRowToDictionary(DataRow row)
+        {
+            var dict = new Dictionary<string, object>();
+
+            foreach (DataColumn column in row.Table.Columns)
+            {
+                dict[column.ColumnName] = row[column];
+            }
+
+            return dict;
         }
     }
 }
