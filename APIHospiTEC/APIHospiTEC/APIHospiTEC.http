@@ -1,0 +1,6 @@
+@APIHospiTEC_HostAddress = http://localhost:5197
+
+GET {{APIHospiTEC_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
