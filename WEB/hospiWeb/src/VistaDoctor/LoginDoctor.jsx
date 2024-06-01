@@ -3,12 +3,11 @@ import { useNavigate, Link, Navigate } from 'react-router-dom';
 
 import DivInput from '../Components/DivInput';
 
+const LoginDoctor = () => {
 
 
-const LoginPaciente = () => {
     const [data, setData] = useState([]);
 
-    //Se guarda el corre y password para enviarlo a la api
     const [values, setValues] = useState({
         correo: '',
         password: '',
@@ -18,21 +17,23 @@ const LoginPaciente = () => {
      //------------------------------------ESTO HAY  QUE MODIFICARLO----------------------
     useEffect(() => {
         if(localStorage.getItem('user-info')){
-            <Navigate to='/login' />
+            <Navigate to='/profesoresr' />
         }
     }, [])
-  
-  
-  
+
+
+
     const handleSubmit = (event) =>{
         event.preventDefault();
-  
+
       }
+    //Se guarda el tipo de usuario
     const login = async(e) =>{
       e.preventDefault();
-   //------------------------------------ESTO HAY  QUE MODIFICARLO----------------------
-      //Si se validan los datos se guarda en el local storage el rol del user
-      axios.post('https://localhost:7215/api/Login/login_operador',values)
+
+    //------------------------------------ESTO HAY  QUE MODIFICARLO----------------------
+
+      axios.post('https://localhost:7215/api/Login/login_admin',values)
       .then(res => setData(res.data),  localStorage.setItem('user-info', true), localStorage.setItem('data', JSON.stringify(data)))
       .then(() => {
         console.log(data.correo);
@@ -44,38 +45,25 @@ const LoginPaciente = () => {
       })
       .catch(err => console.log(err));
         
-
-
- //------------------------------------ESTO HAY  QUE MODIFICARLO----------------------
-
-      //Se guarda la hora de entrrada al trabajo en el localstorage
-      axios.post('https://localhost:7215/api/Login/login_operador',values)
+       //------------------------------------ESTO HAY  QUE MODIFICARLO----------------------
+      axios.post('https://localhost:7215/api/Login/login_admin',values)
       .then(res => localStorage.setItem('data', JSON.stringify(res.data)))
       .then(() => {
-        localStorage.setItem('userOperador', true)
-        const fechaActual = new Date(); // Obtener la fecha y hora actual
-        const fechaFormateada = fechaActual.toISOString().split('T')[0]; // Formatear la fecha a 'YYYY-MM-DD'
-      
-        const horas = fechaActual.getHours().toString().padStart(2, '0');
-        const minutos = fechaActual.getMinutes().toString().padStart(2, '0');
-        const segundos = fechaActual.getSeconds().toString().padStart(2, '0');
-        const horaActual = `${horas}:${minutos}:${segundos}`;
-        localStorage.setItem('horaEntrada', horaActual)
-  
+        localStorage.setItem('userAdmin', true)
         console.log(data.correo);
         console.log(data.password);
         console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        go('/operador/prestamoestudiantes')
+        go('/profesores')
        // localStorage.setItem('user-info', JSON.stringify(res.data));
         console.log(localStorage.getItem('user-info'));
       })
       .catch(err => console.log(err));
-  
-  
+
+
     }
   
     
-    //Formulario y botones
+  
     return (
       <div className='container-fluid'>
         <div className='row mt-5'>
@@ -83,7 +71,7 @@ const LoginPaciente = () => {
             <div className='card border border-dark'>
               <div className='card-header bg-dark border border-dark 
               text-white'>
-                LOGIN PACIENTE
+                LOGIN DOCTOR
               </div>
               <div className='card-body'>
                 <form onSubmit={login}>
@@ -100,9 +88,6 @@ const LoginPaciente = () => {
                     </button>
                   </div>
                 </form>
-                <Link to='/registrooperador'>
-                  <i className='fa-solid fa-user-plus'></i>REGISTRO
-                </Link>
               </div>
             </div>  
           </div>
@@ -111,4 +96,4 @@ const LoginPaciente = () => {
     )
   }
 
-export default LoginPaciente
+export default LoginDoctor
