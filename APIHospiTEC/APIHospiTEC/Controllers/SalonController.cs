@@ -2,6 +2,7 @@
 using APIHospiTEC.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
 
 namespace APIHospiTEC.Controllers
 {
@@ -38,6 +39,32 @@ namespace APIHospiTEC.Controllers
         {
             var data = await _postgresql.GetSalonPorNumSalonAsync(numsalon);
             return Ok(data);
+        }
+        [HttpPut]
+        [Route("actualizar_salon/{numsalon}")]
+
+        public async Task<IActionResult> UpdateSalon([FromBody] Salon modelo, int numsalon)
+        {
+            modelo.numsalon = numsalon;
+            var result = await _postgresql.UpdateSalonAsync(modelo);
+            if(result == 0)
+            {
+                return NotFound();
+            }
+            else
+                return Ok(result);
+        }
+        [HttpDelete]
+        [Route("eliminar_salon/{numsalon}")]
+        public async Task<IActionResult> DeleteSalon(int numsalon)
+        {
+            var result = await _postgresql.DeleteSalonAsync(numsalon);
+            if (result == 0)
+            {
+                return NotFound();
+            }
+            else
+                return Ok();
         }
     }
 }

@@ -21,7 +21,7 @@ namespace APIHospiTEC.Controllers
 
         public async Task<IActionResult> InsertHistorial(Historial modelo)
         {
-            var result = await _postgresql.InsertHistorialAsync(modelo.id, modelo.fecha, modelo.tratamiento, modelo.cedulapaciente, modelo.id_procedimiento);
+            var result = await _postgresql.InsertHistorialAsync(modelo);
             return Ok(result);
 
         }
