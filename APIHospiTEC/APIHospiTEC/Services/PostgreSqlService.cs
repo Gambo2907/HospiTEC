@@ -75,15 +75,10 @@ namespace APIHospiTEC.Services
         }
 
 
-        private Dictionary<string, object> ConvertDataRowToDictionary(DataRow dataRow)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<int> InsertHistorialAsync(int id_historial, DateOnly fecha, string Tratamiento, int cedula, int id_procedimiento)
         {
             var query = $"INSERT INTO " +
-                $"historial " +
+                $"historial_medico " +
                 $"VALUES ('{id_historial}','{fecha}','{Tratamiento}','{cedula}','{id_procedimiento}')";
             return await _dataAccess.ExecuteNonQueryAsync(query);
         }
@@ -91,19 +86,59 @@ namespace APIHospiTEC.Services
         //Obtiene el historial de pacientes que hay en la db 
         public async Task<List<Dictionary<string, object>>> GetHistorialAsync()
         {
-            var query = "SELECT id_historial,fecha,Tratamiento,cedula,id_procedimiento " +
-                "FROM historial";
+            var query = "SELECT id,fecha,tratamiento,cedulapaciente,id_procedimiento " +
+                "FROM historial_medico";
             var dataTable = await _dataAccess.ExecuteQueryAsync(query);
             return ConvertDataTableToList(dataTable);
         }
 
         public async Task<Dictionary<string, object>> GetHistorialPorCedulaAsync(int cedula)
         {
-            var query = $"SELECT id_historial,fecha,Tratamiento,cedula,id_procedimiento " +
-                $"FROM procedimiento_medico WHERE cedula = @cedula";
+            var query = $"SELECT id,fecha,tratamiento,cedulapaciente,id_procedimiento " +
+                $"FROM procedimiento_medico WHERE cedulapaciente = @cedula";
             var parameters = new NpgsqlParameter[]
             {
             new NpgsqlParameter("@cedula", cedula)
+            };
+            var dataTable = await _dataAccess.ExecuteQueryAsync(query, parameters);
+            return dataTable.Rows.Count > 0 ? ConvertDataRowToDictionary(dataTable.Rows[0]) : null;
+        }
+
+        public async Task<int> InsertSalonAsync(int numsalon, string nombre, int? piso, int tipo_de_medicina)
+        {
+            var query = $"INSERT INTO " +
+                $"salon " +
+                $"VALUES ('{numsalon}','{nombre}','{piso}','{tipo_de_medicina}')";
+            return await _dataAccess.ExecuteNonQueryAsync(query);
+
+        }
+
+        public async Task<List<Dictionary<string, object>>> GetSalonesAsync()
+        {
+            var query = @"
+                SELECT s.numsalon, s.nombre, s.piso, tp.descripcion AS TipoMedicina, COUNT(*) AS CantCamas
+                FROM salon AS s
+                JOIN tipo_medicina AS tp ON s.id_tipo_medicina = tp.id
+                JOIN cama AS c ON s.numsalon = c.num_salon
+                GROUP BY s.numsalon, s.nombre, s.piso, tp.descripcion
+                ORDER BY s.numsalon;
+            ";
+            var dataTable = await _dataAccess.ExecuteQueryAsync(query);
+            return ConvertDataTableToList(dataTable);
+        }
+
+        public async Task<Dictionary<string, object>?> GetSalonPorNumSalonAsync(int numsalon)
+        {
+            var query = @"
+                SELECT s.nombre, s.piso, tp.descripcion AS TipoMedicina, COUNT(*) AS CantCamas
+                FROM salon AS s
+                JOIN tipo_medicina AS tp ON s.id_tipo_medicina = tp.id
+                JOIN cama AS c ON @numsalon = c.num_salon
+                GROUP BY s.nombre, s.piso, tp.descripcion;
+            ";
+            var parameters = new NpgsqlParameter[]
+            {
+            new NpgsqlParameter("@numsalon", numsalon)
             };
             var dataTable = await _dataAccess.ExecuteQueryAsync(query, parameters);
             return dataTable.Rows.Count > 0 ? ConvertDataRowToDictionary(dataTable.Rows[0]) : null;
