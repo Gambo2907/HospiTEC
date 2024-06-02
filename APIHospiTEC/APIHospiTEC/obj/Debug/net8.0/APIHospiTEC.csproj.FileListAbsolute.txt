@@ -67,3 +67,14 @@ C:\Users\User\Documents\GitHub\HospiTEC\APIHospiTEC\APIHospiTEC\obj\Debug\net8.0
 C:\Users\User\Documents\GitHub\HospiTEC\APIHospiTEC\APIHospiTEC\obj\Debug\net8.0\APIHospiTEC.pdb
 C:\Users\User\Documents\GitHub\HospiTEC\APIHospiTEC\APIHospiTEC\obj\Debug\net8.0\APIHospiTEC.genruntimeconfig.cache
 C:\Users\User\Documents\GitHub\HospiTEC\APIHospiTEC\APIHospiTEC\obj\Debug\net8.0\ref\APIHospiTEC.dll
+C:\Users\nicva\HospiTEC\APIHospiTEC\APIHospiTEC\obj\Debug\net8.0\APIHospiTEC.csproj.AssemblyReference.cache
+C:\Users\nicva\HospiTEC\APIHospiTEC\APIHospiTEC\obj\Debug\net8.0\APIHospiTEC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nicva\HospiTEC\APIHospiTEC\APIHospiTEC\obj\Debug\net8.0\APIHospiTEC.AssemblyInfoInputs.cache
+C:\Users\nicva\HospiTEC\APIHospiTEC\APIHospiTEC\obj\Debug\net8.0\APIHospiTEC.AssemblyInfo.cs
+C:\Users\nicva\HospiTEC\APIHospiTEC\APIHospiTEC\obj\Debug\net8.0\APIHospiTEC.csproj.CoreCompileInputs.cache
+C:\Users\nicva\HospiTEC\APIHospiTEC\APIHospiTEC\obj\Debug\net8.0\APIHospiTEC.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\nicva\HospiTEC\APIHospiTEC\APIHospiTEC\obj\Debug\net8.0\APIHospiTEC.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\nicva\HospiTEC\APIHospiTEC\APIHospiTEC\obj\Debug\net8.0\APIHospiTEC.sourcelink.json
+C:\Users\nicva\HospiTEC\APIHospiTEC\APIHospiTEC\obj\Debug\net8.0\APIHospiTEC.dll
+C:\Users\nicva\HospiTEC\APIHospiTEC\APIHospiTEC\obj\Debug\net8.0\refint\APIHospiTEC.dll
+C:\Users\nicva\HospiTEC\APIHospiTEC\APIHospiTEC\obj\Debug\net8.0\APIHospiTEC.pdb

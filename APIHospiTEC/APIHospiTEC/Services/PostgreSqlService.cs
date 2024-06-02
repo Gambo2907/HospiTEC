@@ -74,6 +74,42 @@ namespace APIHospiTEC.Services
             return dataTable.Rows.Count > 0 ? ConvertDataRowToDictionary(dataTable.Rows[0]) : null;
         }
 
+
+        private Dictionary<string, object> ConvertDataRowToDictionary(DataRow dataRow)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<int> InsertHistorialAsync(int id_historial, DateOnly fecha, string Tratamiento, int cedula, int id_procedimiento)
+        {
+            var query = $"INSERT INTO " +
+                $"historial " +
+                $"VALUES ('{id_historial}','{fecha}','{Tratamiento}','{cedula}','{id_procedimiento}')";
+            return await _dataAccess.ExecuteNonQueryAsync(query);
+        }
+
+        //Obtiene el historial de pacientes que hay en la db 
+        public async Task<List<Dictionary<string, object>>> GetHistorialAsync()
+        {
+            var query = "SELECT id_historial,fecha,Tratamiento,cedula,id_procedimiento " +
+                "FROM historial";
+            var dataTable = await _dataAccess.ExecuteQueryAsync(query);
+            return ConvertDataTableToList(dataTable);
+        }
+
+        public async Task<Dictionary<string, object>> GetHistorialPorCedulaAsync(int cedula)
+        {
+            var query = $"SELECT id_historial,fecha,Tratamiento,cedula,id_procedimiento " +
+                $"FROM procedimiento_medico WHERE cedula = @cedula";
+            var parameters = new NpgsqlParameter[]
+            {
+            new NpgsqlParameter("@cedula", cedula)
+            };
+            var dataTable = await _dataAccess.ExecuteQueryAsync(query, parameters);
+            return dataTable.Rows.Count > 0 ? ConvertDataRowToDictionary(dataTable.Rows[0]) : null;
+        }
+
+
         // Método para convertir DataTable a List<Dictionary<string, object>>
         public List<Dictionary<string, object>> ConvertDataTableToList(DataTable dataTable)
         {
