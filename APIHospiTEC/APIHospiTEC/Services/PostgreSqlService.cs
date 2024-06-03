@@ -206,12 +206,12 @@ namespace APIHospiTEC.Services
             var dataTable = await _dataAccess.ExecuteQueryAsync(query, parameters);
             return dataTable.Rows.Count > 0 ? ConvertDataRowToDictionary(dataTable.Rows[0]) : null;
         }
-        public async Task<Dictionary<string, object>?> LoginPersonalAsync(string? correo, string? password)
+        public async Task<Dictionary<string, object>?> LoginDoctorAsync(string? correo, string? password)
         {
             var query = @"
                 SELECT nombre,ap1,ap2,cedula,direccion,nacimiento,correo,fechaingreso
                 FROM personal
-                WHERE correo = @correo AND password = @password AND idtipopersonal BETWEEN 1 AND 2 ;
+                WHERE correo = @correo AND password = @password AND idtipopersonal = 1 ;
             ";
             var parameters = new NpgsqlParameter[]
             {
@@ -221,6 +221,81 @@ namespace APIHospiTEC.Services
             };
             var dataTable = await _dataAccess.ExecuteQueryAsync(query, parameters);
             return dataTable.Rows.Count > 0 ? ConvertDataRowToDictionary(dataTable.Rows[0]) : null;
+        }
+
+        public async Task<int> InsertPersonalAsync(Personal personal)
+        {
+            var parameters = new NpgsqlParameter[]
+            {
+            new NpgsqlParameter("@nombre",personal.nombre),
+            new NpgsqlParameter("@ap1",personal.ap1),
+            new NpgsqlParameter("@ap2",personal.ap2),
+            new NpgsqlParameter("@cedula",personal.cedula),
+            new NpgsqlParameter("@direccion",personal.direccion),
+            new NpgsqlParameter("@nacimiento",personal.nacimiento),
+            new NpgsqlParameter("@correo",personal.correo),
+            new NpgsqlParameter("@password",personal.password),
+            new NpgsqlParameter("@fechaingreso",personal.fechaingreso),
+            new NpgsqlParameter("@idtipopersonal",personal.idtipopersonal),
+            };
+            return await _dataAccess.CallStoredProcedureAsync("crear_personal", parameters);
+        }
+
+        public async Task<List<Dictionary<string, object>>> GetPersonalAsync()
+        {
+            var query = @"
+                SELECT p.nombre, p.ap1, p.ap2, p.cedula, p.direccion, p.nacimiento, p.correo, p.fechaingreso,
+                tpe.descripcion as TipoPersonal
+                FROM personal AS p
+                JOIN tipo_personal as tpe ON p.idtipopersonal = tpe.id;
+            ";
+            
+            var dataTable = await _dataAccess.ExecuteQueryAsync(query);
+            return ConvertDataTableToList(dataTable);
+        }
+
+        public async Task<List<Dictionary<string, object>>> GetPersonalPorCedulaAsync(int cedula)
+        {
+            var query = @"
+                SELECT p.nombre, p.ap1, p.ap2, p.cedula, p.direccion, p.nacimiento, p.correo, p.fechaingreso,
+                tpe.descripcion as TipoPersonal
+                FROM personal AS p
+                JOIN tipo_personal as tpe ON p.idtipopersonal = tpe.id
+                WHERE @cedula = p.cedula;
+            ";
+            var parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@cedula", cedula)
+            };
+            var dataTable = await _dataAccess.ExecuteQueryAsync(query,parameters);
+            return ConvertDataTableToList(dataTable);
+        }
+
+        public async Task<int> UpdatePersonalAsync(Personal personal)
+        {
+            var parameters = new NpgsqlParameter[]
+            {
+            new NpgsqlParameter("@u_nombre",personal.nombre),
+            new NpgsqlParameter("@u_ap1",personal.ap1),
+            new NpgsqlParameter("@u_ap2",personal.ap2),
+            new NpgsqlParameter("@u_cedula",personal.cedula),
+            new NpgsqlParameter("@u_direccion",personal.direccion),
+            new NpgsqlParameter("@u_nacimiento",personal.nacimiento),
+            new NpgsqlParameter("@u_correo",personal.correo),
+            new NpgsqlParameter("@u_password",personal.password),
+            new NpgsqlParameter("@u_fechaingreso",personal.fechaingreso),
+            new NpgsqlParameter("@u_idtipopersonal",personal.idtipopersonal),
+            };
+            return await _dataAccess.CallStoredProcedureAsync("update_personal", parameters);
+        }
+
+        public async Task<int> DeletePersonalAsync(int cedula)
+        {
+            var parameters = new NpgsqlParameter[]
+            {
+            new NpgsqlParameter("@ced_elimin",cedula),
+            };
+            return await _dataAccess.CallStoredProcedureAsync("eliminar_personal", parameters);
         }
 
 
@@ -242,6 +317,32 @@ namespace APIHospiTEC.Services
             }
 
             return list;
+        }
+
+        public async Task<List<Dictionary<string, object>>> GetTipoPersonalAsync()
+        {
+            var query = @"
+                SELECT *
+                FROM tipo_personal;
+            ";
+
+            var dataTable = await _dataAccess.ExecuteQueryAsync(query);
+            return ConvertDataTableToList(dataTable);
+        }
+
+        public async Task<List<Dictionary<string, object>>> GetTipoPersonalPoridAsync(int id)
+        {
+            var query = @"
+                SELECT *
+                FROM tipo_personal
+                WHERE @id = id;
+            ";
+            var parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@id", id)
+            };
+            var dataTable = await _dataAccess.ExecuteQueryAsync(query, parameters);
+            return ConvertDataTableToList(dataTable);
         }
 
         public async Task<string> EncryptPassword(string? password)

@@ -37,7 +37,7 @@ namespace APIHospiTEC.Controllers
 
         [HttpGet]
         [Route("paciente/{cedula}")]
-        public async Task<IActionResult> GetPaciente(int cedula)
+        public async Task<IActionResult> GetPacientePorCedula(int cedula)
         {
             var data = await _postgresql.GetPacientePorCedulaAsync(cedula);
             if (data == null)
