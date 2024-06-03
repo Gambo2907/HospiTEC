@@ -100,7 +100,7 @@ const LoginPaciente = () => {
                     </button>
                   </div>
                 </form>
-                <Link to='/registrooperador'>
+                <Link to='/registropaciente'>
                   <i className='fa-solid fa-user-plus'></i>REGISTRO
                 </Link>
               </div>
