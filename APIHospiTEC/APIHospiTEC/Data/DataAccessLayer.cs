@@ -61,7 +61,18 @@ namespace APIHospiTEC.Data
                 return await command.ExecuteNonQueryAsync();
             }
         }
+        public async Task<T> ExecuteScalarAsync<T>(string query, params NpgsqlParameter[] parameters)
+        {
+            using var connection = await GetConnectionAsync();
+            using var command = new NpgsqlCommand(query, connection);
+            if (parameters != null)
+            {
+                command.Parameters.AddRange(parameters);
+            }
+            var result = await command.ExecuteScalarAsync();
+            return (T)Convert.ChangeType(result, typeof(T));
+        }
 
-        
+
     }
 }

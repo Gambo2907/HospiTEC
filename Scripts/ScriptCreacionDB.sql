@@ -62,13 +62,13 @@ CREATE TABLE TELEFONOS_PACIENTE(
 
 CREATE TABLE PATOLOGIA(
 	ID SERIAL PRIMARY KEY,
-	Nombre VARCHAR(50) UNIQUE NOT NULL,
-	Tratamiento VARCHAR(200) NOT NULL
+	Nombre VARCHAR(50) UNIQUE NOT NULL
 );
 
 CREATE TABLE PATOLOGIA_POR_PACIENTE(
 	ID_Patologia INT NOT NULL,
 	CedulaPaciente INT NOT NULL,
+	Tratamiento VARCHAR(200) NOT NULL,
 	PRIMARY KEY(ID_Patologia,CedulaPaciente)
 );
 
@@ -92,7 +92,7 @@ CREATE TABLE Salon(
 
 CREATE TABLE CAMA(
 	NumCama INT UNIQUE NOT NULL PRIMARY KEY,
-	UCI BIT NOT NULL,
+	UCI BOOLEAN NOT NULL,
 	ID_EstadoCama INT NOT NULL,
 	Num_Salon INT NOT NULL
 );
@@ -174,3 +174,34 @@ REFERENCES PACIENTE(Cedula);
 ALTER TABLE RESERVACION
 ADD CONSTRAINT "key12" FOREIGN KEY(IDProcMed) 
 REFERENCES PROCEDIMIENTO_MEDICO(ID);
+
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
+--Funcion para encriptar un password
+CREATE OR REPLACE FUNCTION encriptar_password()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.password := md5(NEW.password);
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION encriptar_passwords(passwords_ TEXT)
+RETURNS TEXT AS $$
+BEGIN
+  RETURN md5(passwords_);
+END;
+$$ LANGUAGE plpgsql;
+
+--Triggers para encriptar passwords en paciente y personal
+CREATE TRIGGER encriptar_password_paciente
+BEFORE INSERT ON paciente
+FOR EACH ROW
+EXECUTE FUNCTION encriptar_password();
+
+CREATE TRIGGER encriptar_password_personal
+BEFORE INSERT ON personal
+FOR EACH ROW
+EXECUTE FUNCTION encriptar_password();
+
+
