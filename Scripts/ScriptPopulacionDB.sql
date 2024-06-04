@@ -67,3 +67,27 @@ VALUES(7,'Mastectomia',5);
 INSERT INTO PROCEDIMIENTO_MEDICO
 VALUES(8,'Amigdalectomia',1);
 
+INSERT INTO patologia
+VALUES(DEFAULT, 'Rinitis Cronica');
+
+INSERT INTO patologia
+VALUES(DEFAULT, 'Dermatitis');
+
+INSERT INTO patologia
+VALUES(DEFAULT, 'Psoriasis');
+
+INSERT INTO patologia
+VALUES(DEFAULT, 'Acne');
+
+INSERT INTO patologia
+VALUES(DEFAULT, 'Alopecia');
+
+INSERT INTO patologia
+VALUES(DEFAULT, 'Amigdalitis');
+
+INSERT INTO patologia
+VALUES(DEFAULT, 'Hipertensión');
+
+INSERT INTO patologia
+VALUES(DEFAULT, 'Asma');
+

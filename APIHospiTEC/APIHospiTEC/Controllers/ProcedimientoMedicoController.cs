@@ -34,15 +34,28 @@ namespace APIHospiTEC.Controllers
         }
 
         [HttpGet]
-        [Route("procedimiento_medico/({nombre})")]
-        public async Task<IActionResult> GetProcedimientoMedico(string nombre)
+        [Route("procedimiento_medico/({id})")]
+        public async Task<IActionResult> GetProcedimientoMedico(int id)
         {
-            var data = await _postgresql.GetProcedimientoMedicoPorNombreAsync(nombre);
+            var data = await _postgresql.GetProcedimientoMedicoPorIDAsync(id);
             if (data == null)
             {
                 return NotFound();
             }
             return Ok(data);
+        }
+        [HttpPut]
+        [Route("actualizar_procedimiento/{id}")]
+
+        public async Task<IActionResult> UpdateCama([FromBody] ProcedimientoMedico modelo, int id)
+        {
+            var result = await _postgresql.UpdateProcedimientoMedicoAsync(modelo,id);
+            if (result == 0)
+            {
+                return NotFound();
+            }
+            else
+                return Ok(result);
         }
 
 

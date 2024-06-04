@@ -24,6 +24,26 @@ namespace APIHospiTEC.Controllers
             return Ok(result);
 
         }
+        [HttpPost]
+        [Route("registrar_telefono_personal")]
+
+        public async Task<IActionResult> InsertTelefonoPersonal(Telefonos modelo)
+        {
+            var result = await _postgresql.InsertTelefonoPersonalAsync(modelo);
+            return Ok(result);
+
+        }
+        [HttpGet]
+        [Route("telefonos_personal/{cedula}")]
+        public async Task<IActionResult> GetTelefonosPorCedulaPersonal(int cedula)
+        {
+            var data = await _postgresql.GetTelefonosPorPersonalAsync(cedula);
+            if (data == null)
+            {
+                return NotFound();
+            }
+            return Ok(data);
+        }
         [HttpGet]
         [Route("personal_registrado")]
         public async Task<IActionResult> GetPersonal()
