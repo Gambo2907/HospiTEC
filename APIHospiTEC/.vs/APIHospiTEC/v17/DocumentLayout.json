@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|c:\\users\\user\\documents\\github\\hospitec\\apihospitec\\apihospitec\\services\\postgresqlservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|solutionrelative:apihospitec\\services\\postgresqlservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|c:\\users\\user\\documents\\github\\hospitec\\apihospitec\\apihospitec\\models\\patologia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|solutionrelative:apihospitec\\models\\patologia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|c:\\users\\user\\documents\\github\\hospitec\\apihospitec\\apihospitec\\controllers\\procedimientomedicocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|solutionrelative:apihospitec\\controllers\\procedimientomedicocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|c:\\users\\user\\documents\\github\\hospitec\\apihospitec\\apihospitec\\services\\postgresqlservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|solutionrelative:apihospitec\\services\\postgresqlservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|c:\\users\\user\\documents\\github\\hospitec\\apihospitec\\apihospitec\\services\\telefonos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,7 +42,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ProcedimientoMedicoController.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Controllers\\ProcedimientoMedicoController.cs",
               "RelativeDocumentMoniker": "APIHospiTEC\\Controllers\\ProcedimientoMedicoController.cs",
@@ -90,19 +90,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "PostgreSqlService.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Services\\PostgreSqlService.cs",
               "RelativeDocumentMoniker": "APIHospiTEC\\Services\\PostgreSqlService.cs",
               "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Services\\PostgreSqlService.cs",
               "RelativeToolTip": "APIHospiTEC\\Services\\PostgreSqlService.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAswBUAAAAhAAAA",
+              "ViewState": "AQIAAPcBAAAAAAAAAAAQwP4BAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T21:20:03.105Z"
+              "WhenOpened": "2024-06-03T21:20:03.105Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Patologia.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Models\\Patologia.cs",
               "RelativeDocumentMoniker": "APIHospiTEC\\Models\\Patologia.cs",

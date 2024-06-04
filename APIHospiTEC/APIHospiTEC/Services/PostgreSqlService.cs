@@ -508,7 +508,7 @@ namespace APIHospiTEC.Services
         public async Task<int> InsertTelefonoPacienteAsync(Telefonos modelo)
         {
             var query = $"INSERT INTO " +
-            $"telefonos_paciente" +
+            $"telefonos_paciente (pacientecedula,telefono)" +
                 $"VALUES ('{modelo.cedula}','{modelo.telefono}')";
             return await _dataAccess.ExecuteNonQueryAsync(query);
 
@@ -544,7 +544,7 @@ namespace APIHospiTEC.Services
         public async Task<int> InsertTelefonoPersonalAsync(Telefonos modelo)
         {
             var query = $"INSERT INTO " +
-            $"telefonos_personal" +
+            $"telefonos_personal (personalcedula , telefono)" +
                 $"VALUES ('{modelo.cedula}','{modelo.telefono}')";
             return await _dataAccess.ExecuteNonQueryAsync(query);
 
