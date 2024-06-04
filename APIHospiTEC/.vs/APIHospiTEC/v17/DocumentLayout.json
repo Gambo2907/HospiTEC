@@ -96,7 +96,7 @@
               "RelativeDocumentMoniker": "APIHospiTEC\\Services\\PostgreSqlService.cs",
               "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Services\\PostgreSqlService.cs",
               "RelativeToolTip": "APIHospiTEC\\Services\\PostgreSqlService.cs",
-              "ViewState": "AQIAAPcBAAAAAAAAAAAQwP4BAAAqAAAA",
+              "ViewState": "AQIAAOMBAAAAAAAAAAAqwO0BAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-03T21:20:03.105Z",
               "EditorCaption": ""
@@ -111,8 +111,7 @@
               "RelativeToolTip": "APIHospiTEC\\Models\\Patologia.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-04T21:02:38.079Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-04T21:02:38.079Z"
             }
           ]
         }

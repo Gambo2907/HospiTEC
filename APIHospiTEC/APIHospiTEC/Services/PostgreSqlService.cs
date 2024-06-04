@@ -483,10 +483,17 @@ namespace APIHospiTEC.Services
 
         public async Task<int> InsertPatologiaPorPacienteAsync(int id_patologia,int cedulapaciente, string tratamiento)
         {
-            var query = $"INSERT INTO " +
-            $"patologia_por_paciente" +
-                $"VALUES ('{id_patologia}','{cedulapaciente}','{tratamiento}')";
-            return await _dataAccess.ExecuteNonQueryAsync(query);
+            var query = @"
+                        INSERT INTO 
+                        patologia_por_paciente
+                        VALUES (@id_patologia,@cedulapaciente,@tratamiento);";
+            var parameters = new NpgsqlParameter[]
+            {
+            new NpgsqlParameter("@id_patologia", id_patologia),
+            new NpgsqlParameter("@cedulapaciente", cedulapaciente),
+            new NpgsqlParameter("@tratamiento", tratamiento)
+            };
+            return await _dataAccess.ExecuteNonQueryAsync(query,parameters);
 
         }
         public async Task<List<Dictionary<string, object>>> GetPatologiasPorPacienteAsync(int cedula)
@@ -495,7 +502,7 @@ namespace APIHospiTEC.Services
                 SELECT p.nombre, pu.tratamiento
                 FROM patologia as p
                 JOIN patologia_por_paciente as pu on p.id = pu.id_patologia
-                WHERE @cedulapaciente = p.cedulapaciente;
+                WHERE @cedulapaciente = pu.cedulapaciente;
             ";
             var parameters = new NpgsqlParameter[]
             {
