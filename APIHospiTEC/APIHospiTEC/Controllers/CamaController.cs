@@ -29,6 +29,8 @@ namespace APIHospiTEC.Controllers
             var data = await _postgresql.GetCamasAsync();
             return Ok(data);
         }
+        [HttpGet]
+        [Route("equipo_por_cama/{numcama}")]
         public async Task<IActionResult> GetEquipoPorCama(int numcama)
         {
             var data = await _postgresql.GetEquipoPorCamaAsync(numcama);
@@ -55,17 +57,6 @@ namespace APIHospiTEC.Controllers
         public async Task<IActionResult> GetCamasPorNumSalon(int num_salon)
         {
             var data = await _postgresql.GetCamasPorNumSalonAsync(num_salon);
-            if (data == null)
-            {
-                return NotFound();
-            }
-            return Ok(data);
-        }
-        [HttpGet]
-        [Route("camas_disponibles/({num_salon})")]
-        public async Task<IActionResult> GetCamasDisponiblesPorNumSalon(int num_salon)
-        {
-            var data = await _postgresql.GetCamasDisponiblesPorNumSalonAsync(num_salon);
             if (data == null)
             {
                 return NotFound();

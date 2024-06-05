@@ -91,3 +91,32 @@ VALUES(DEFAULT, 'Hipertensión');
 INSERT INTO patologia
 VALUES(DEFAULT, 'Asma');
 
+Insert into salon
+values(1,'Salon1',2,1);
+
+Insert into salon
+values(2,'Salon2',2,3);
+
+Insert into cama
+values(1,FALSE,1,1);
+
+Insert into cama
+values(2,FALSE,1,1);
+
+Insert into cama
+values(3,FALSE,1,1);
+
+Insert into cama
+values(4,false,1,2);
+
+INSERT INTO equipo_por_cama
+values(1,1);
+INSERT INTO equipo_por_cama
+values(1,4);
+INSERT INTO equipo_por_cama
+values(2,7);
+INSERT INTO equipo_por_cama
+values(1,5);
+INSERT INTO equipo_por_cama
+values(3,3);
+

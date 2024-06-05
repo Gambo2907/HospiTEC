@@ -5,24 +5,6 @@ GROUP BY s.numsalon,s.nombre,s.piso,tp.descripcion
 Order BY s.numsalon
 
 select * from cama
-	
-Insert into salon
-values(1,'Salon1',2,1);
-
-Insert into salon
-values(2,'Salon2',2,3);
-
-Insert into cama
-values(1,FALSE,1,1);
-
-Insert into cama
-values(2,FALSE,1,1);
-
-Insert into cama
-values(3,FALSE,1,1);
-
-Insert into cama
-values(4,false,1,2);
 
 select c.numcama, c.uci, c.num_salon from reservacion as r
 	RIGHT JOIN cama as c on r.numcama = c.numcama

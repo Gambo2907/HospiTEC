@@ -126,3 +126,14 @@ BEGIN
 END;
 $$;
 
+CREATE OR REPLACE PROCEDURE eliminar_reservacion(
+	id_elim INT = null
+	
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+	DELETE FROM reservacion
+	WHERE id_elim = id;
+END;
+$$;

@@ -354,7 +354,7 @@ namespace APIHospiTEC.Services
         {
             var query = @"
                 SELECT *
-                FROM tipo_personal;
+	            FROM tipo_personal;
             ";
 
             var dataTable = await _dataAccess.ExecuteQueryAsync(query);
@@ -387,7 +387,8 @@ namespace APIHospiTEC.Services
         {
             var query = @"
                 SELECT c.numcama, c.uci, c.num_salon
-                FROM cama as c;
+                FROM cama as c
+                ORDER BY c.numcama;
             ";
 
             var dataTable = await _dataAccess.ExecuteQueryAsync(query);
@@ -421,21 +422,8 @@ namespace APIHospiTEC.Services
             var dataTable = await _dataAccess.ExecuteQueryAsync(query, parameters);
             return ConvertDataTableToList(dataTable);
         }
-        public async Task<List<Dictionary<string, object>>> GetCamasDisponiblesPorNumSalonAsync(int num_salon)
-        {
-            var query = @"
-                SELECT c.numcama, c.uci, c.num_salon
-                FROM cama as c
-                RIGHT JOIN reservacion as r on c.numcama = r.numcama
-                WHERE @numsalon = c.num_salon AND r.fechaingreso IS NULL OR r.fechaingreso != @fecha ;
-            ";
-            var parameters = new NpgsqlParameter[]
-            {
-                new NpgsqlParameter("@numsalon", num_salon)
-            };
-            var dataTable = await _dataAccess.ExecuteQueryAsync(query, parameters);
-            return ConvertDataTableToList(dataTable);
-        }
+        
+            
         public async Task<List<Dictionary<string, object>>> GetCamasDisponiblesPorFechaAsync(DateOnly fecha)
         {
             var query = @"
@@ -458,7 +446,7 @@ namespace APIHospiTEC.Services
                 JOIN cama as c ON epc.num_cama = c.numcama
                 JOIN estado_cama as ec ON c.id_estadocama = ec.id
                 JOIN equipo_medico as em ON epc.id_equipomedico = em.id
-                WHERE @numcama = epc.numcama;
+                WHERE @numcama = epc.num_cama;
             ";
             var parameters = new NpgsqlParameter[]
             {
@@ -703,8 +691,7 @@ namespace APIHospiTEC.Services
 
         public async Task<int> DeleteReservacionAsync(int id)
         {
-            var query = @"DELETE FROM reservacion
-                        WHERE id = @id;";
+            var query = @"CALL eliminar_reservacion(id);";
             var parameters = new NpgsqlParameter[]
             {
             new NpgsqlParameter("@id", id)
