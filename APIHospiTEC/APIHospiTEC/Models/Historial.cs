@@ -5,7 +5,6 @@ namespace APIHospiTEC.Models
 {
     public class Historial
     {
-        [Key] public required int id { get; set; }
         public required DateOnly fecha { get; set; }
 
         public required string tratamiento { get; set; }

@@ -70,6 +70,21 @@ namespace APIHospiTEC.Services
             };
             return await _dataAccess.ExecuteNonQueryAsync(query, parameters);
         }
+        public async Task<List<Dictionary<string, object>>> GetHistorialPorCedulaAsync(int cedula)
+        {
+            var query = @"
+                SELECT hm.id,hm.fecha,hm.tratamiento,hm.cedulapaciente,t.nombre
+                FROM historial_medico as hm
+                JOIN procedimiento_medico as t ON hm.id_procedimiento = t.id
+                WHERE hm.cedulapaciente = @cedula;
+            ";
+            var parameters = new NpgsqlParameter[]
+            {
+            new NpgsqlParameter("@cedula", cedula)
+            };
+            var dataTable = await _dataAccess.ExecuteQueryAsync(query, parameters);
+            return ConvertDataTableToList(dataTable);
+        }
 
 
         //Inserta un paciente en la tabla paciente de la db 
@@ -108,8 +123,8 @@ namespace APIHospiTEC.Services
         public async Task<int> InsertHistorialAsync(Historial historial)
         {
             var query = $"INSERT INTO " +
-                $"historial_medico (id,fecha,tratamiento,cedulapaciente,id_procedimiento) " +
-                $"VALUES ('{historial.id}','{historial.fecha}','{historial.tratamiento}','{historial.cedulapaciente}','{historial.id_procedimiento}')";
+                $"historial_medico (fecha,tratamiento,cedulapaciente,id_procedimiento) " +
+                $"VALUES ('{historial.fecha}','{historial.tratamiento}','{historial.cedulapaciente}','{historial.id_procedimiento}')";
             return await _dataAccess.ExecuteNonQueryAsync(query);
         }
 
@@ -126,21 +141,7 @@ namespace APIHospiTEC.Services
             return ConvertDataTableToList(dataTable);
         }
 
-        public async Task<Dictionary<string, object>?> GetHistorialPorCedulaAsync(int cedula)
-        {
-            var query = @"
-                SELECT hm.id,hm.fecha,hm.tratamiento,hm.cedulapaciente,t.nombre
-                FROM historial_medico as hm
-                JOIN procedimiento_medico as t ON hm.id_procedimiento = t.id
-                WHERE hm.cedulapaciente = @cedula;
-            ";
-            var parameters = new NpgsqlParameter[]
-            {
-            new NpgsqlParameter("@cedula", cedula)
-            };
-            var dataTable = await _dataAccess.ExecuteQueryAsync(query, parameters);
-            return dataTable.Rows.Count > 0 ? ConvertDataRowToDictionary(dataTable.Rows[0]) : null;
-        }
+        
         public async Task<int> UpdateHistorialAsync(HistorialParaPut historial, int id)
         {
             var query = "UPDATE historial_medico " +
