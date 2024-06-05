@@ -38,10 +38,9 @@ namespace APIHospiTEC.Controllers
         [HttpPut]
         [Route("actualizar_equipo/{id}")]
 
-        public async Task<IActionResult> UpdateEquipo([FromBody] Equipo modelo, int id)
+        public async Task<IActionResult> UpdateEquipo([FromBody] EquipoParaPut modelo, int id)
         {
-            modelo.id = id;
-            var result = await _postgresql.UpdateEquipoAsync(modelo);
+            var result = await _postgresql.UpdateEquipoAsync(modelo,id);
             if (result == 0)
             {
                 return NotFound();

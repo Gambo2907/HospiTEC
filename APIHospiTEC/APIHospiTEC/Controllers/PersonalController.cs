@@ -66,10 +66,9 @@ namespace APIHospiTEC.Controllers
         [HttpPut]
         [Route("actualizar_personal/{cedula}")]
 
-        public async Task<IActionResult> UpdateSalon([FromBody] Personal modelo, int cedula)
+        public async Task<IActionResult> UpdateSalon([FromBody] PersonalParaPut modelo, int cedula)
         {
-            modelo.cedula = cedula;
-            var result = await _postgresql.UpdatePersonalAsync(modelo);
+            var result = await _postgresql.UpdatePersonalAsync(modelo,cedula);
             if (result == 0)
             {
                 return NotFound();

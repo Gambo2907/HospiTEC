@@ -73,10 +73,10 @@ namespace APIHospiTEC.Controllers
         [HttpPut]
         [Route("actualizar_cama/{numcama}")]
 
-        public async Task<IActionResult> UpdateCama([FromBody] Cama modelo, int numcama)
+        public async Task<IActionResult> UpdateCama([FromBody] CamaParaPut modelo, int numcama)
         {
-            modelo.numcama = numcama;
-            var result = await _postgresql.UpdateCamaAsync(modelo);
+            
+            var result = await _postgresql.UpdateCamaAsync(modelo,numcama);
             if (result == 0)
             {
                 return NotFound();

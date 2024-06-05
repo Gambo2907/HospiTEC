@@ -7,12 +7,32 @@
       "RelativeMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|solutionrelative:apihospitec\\services\\postgresqlservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|c:\\users\\user\\documents\\github\\hospitec\\apihospitec\\apihospitec\\controllers\\camacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|solutionrelative:apihospitec\\controllers\\camacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|c:\\users\\user\\documents\\github\\hospitec\\apihospitec\\apihospitec\\controllers\\patologiacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|solutionrelative:apihospitec\\controllers\\patologiacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|c:\\users\\user\\documents\\github\\hospitec\\apihospitec\\apihospitec\\controllers\\historialcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|solutionrelative:apihospitec\\controllers\\historialcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|c:\\users\\user\\documents\\github\\hospitec\\apihospitec\\apihospitec\\models\\historial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|solutionrelative:apihospitec\\models\\historial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|c:\\users\\user\\documents\\github\\hospitec\\apihospitec\\apihospitec\\controllers\\equipocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|solutionrelative:apihospitec\\controllers\\equipocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|c:\\users\\user\\documents\\github\\hospitec\\apihospitec\\apihospitec\\controllers\\saloncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|solutionrelative:apihospitec\\controllers\\saloncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|c:\\users\\user\\documents\\github\\hospitec\\apihospitec\\apihospitec\\models\\salon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|solutionrelative:apihospitec\\models\\salon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|c:\\users\\user\\documents\\github\\hospitec\\apihospitec\\apihospitec\\models\\equipo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|solutionrelative:apihospitec\\models\\equipo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{084490DF-5867-4164-8B9D-4ACCFA810A1C}|APIHospiTEC\\APIHospiTEC.csproj|c:\\users\\user\\documents\\github\\hospitec\\apihospitec\\apihospitec\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,11 +46,83 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HistorialController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Controllers\\HistorialController.cs",
+              "RelativeDocumentMoniker": "APIHospiTEC\\Controllers\\HistorialController.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Controllers\\HistorialController.cs",
+              "RelativeToolTip": "APIHospiTEC\\Controllers\\HistorialController.cs",
+              "ViewState": "AQIAAC0AAAAAAAAAAAAAwDUAAABKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-05T07:45:59.522Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Historial.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Models\\Historial.cs",
+              "RelativeDocumentMoniker": "APIHospiTEC\\Models\\Historial.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Models\\Historial.cs",
+              "RelativeToolTip": "APIHospiTEC\\Models\\Historial.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAxwAsAAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-05T07:19:11.911Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EquipoController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Controllers\\EquipoController.cs",
+              "RelativeDocumentMoniker": "APIHospiTEC\\Controllers\\EquipoController.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Controllers\\EquipoController.cs",
+              "RelativeToolTip": "APIHospiTEC\\Controllers\\EquipoController.cs",
+              "ViewState": "AQIAACAAAAAAAAAAAAAAACoAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-05T07:16:51.793Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SalonController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Controllers\\SalonController.cs",
+              "RelativeDocumentMoniker": "APIHospiTEC\\Controllers\\SalonController.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Controllers\\SalonController.cs",
+              "RelativeToolTip": "APIHospiTEC\\Controllers\\SalonController.cs",
+              "ViewState": "AQIAACgAAAAAAAAAAAAqwC8AAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-05T07:12:08.204Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Salon.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Models\\Salon.cs",
+              "RelativeDocumentMoniker": "APIHospiTEC\\Models\\Salon.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Models\\Salon.cs",
+              "RelativeToolTip": "APIHospiTEC\\Models\\Salon.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAA1wA4AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-05T07:11:47.648Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Equipo.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Models\\Equipo.cs",
+              "RelativeDocumentMoniker": "APIHospiTEC\\Models\\Equipo.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Models\\Equipo.cs",
+              "RelativeToolTip": "APIHospiTEC\\Models\\Equipo.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAgwAwAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-05T07:08:13.098Z"
             },
             {
               "$type": "Document",
@@ -40,49 +132,34 @@
               "RelativeDocumentMoniker": "APIHospiTEC\\Services\\PostgreSqlService.cs",
               "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Services\\PostgreSqlService.cs",
               "RelativeToolTip": "APIHospiTEC\\Services\\PostgreSqlService.cs",
-              "ViewState": "AQIAAPMAAAAAAAAAAAAuwIYBAAAbAAAA",
+              "ViewState": "AQIAAJUAAAAAAAAAAAAswKkAAABYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-05T04:21:58.562Z",
+              "WhenOpened": "2024-06-05T06:35:44.312Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "CamaController.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Controllers\\CamaController.cs",
-              "RelativeDocumentMoniker": "APIHospiTEC\\Controllers\\CamaController.cs",
-              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Controllers\\CamaController.cs",
-              "RelativeToolTip": "APIHospiTEC\\Controllers\\CamaController.cs",
-              "ViewState": "AQIAADgAAAAAAAAAAAAowEAAAAAJAAAA",
+              "Title": "PatologiaController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Controllers\\PatologiaController.cs",
+              "RelativeDocumentMoniker": "APIHospiTEC\\Controllers\\PatologiaController.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Controllers\\PatologiaController.cs",
+              "RelativeToolTip": "APIHospiTEC\\Controllers\\PatologiaController.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAA1wBYAAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-05T04:16:31.072Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-05T07:52:59.064Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "EquipoController.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Controllers\\EquipoController.cs",
-              "RelativeDocumentMoniker": "APIHospiTEC\\Controllers\\EquipoController.cs",
-              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Controllers\\EquipoController.cs",
-              "RelativeToolTip": "APIHospiTEC\\Controllers\\EquipoController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-05T04:16:29.494Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Program.cs",
               "RelativeDocumentMoniker": "APIHospiTEC\\Program.cs",
               "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\HospiTEC\\APIHospiTEC\\APIHospiTEC\\Program.cs",
               "RelativeToolTip": "APIHospiTEC\\Program.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAAAQwCMAAAA/AAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACMAAAA/AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-05T04:14:36.422Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-05T04:14:36.422Z"
             }
           ]
         }

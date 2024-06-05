@@ -43,10 +43,9 @@ namespace APIHospiTEC.Controllers
         [HttpPut]
         [Route("actualizar_salon/{numsalon}")]
 
-        public async Task<IActionResult> UpdateSalon([FromBody] Salon modelo, int numsalon)
+        public async Task<IActionResult> UpdateSalon([FromBody] SalonParaPut modelo, int numsalon)
         {
-            modelo.numsalon = numsalon;
-            var result = await _postgresql.UpdateSalonAsync(modelo);
+            var result = await _postgresql.UpdateSalonAsync(modelo, numsalon);
             if(result == 0)
             {
                 return NotFound();

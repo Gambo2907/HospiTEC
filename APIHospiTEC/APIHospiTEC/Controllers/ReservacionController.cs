@@ -40,10 +40,9 @@ namespace APIHospiTEC.Controllers
         }
         [HttpPut]
         [Route("actualizar_reservacion/{id}")]
-        public async Task<IActionResult> UpdateSalon([FromBody] Reservacion modelo, int id)
+        public async Task<IActionResult> UpdateReservacion([FromBody] ReservacionParaPut modelo, int id)
         {
-            modelo.id = id;
-            var result = await _postgresql.UpdateReservacionAsync(modelo);
+            var result = await _postgresql.UpdateReservacionAsync(modelo, id);
             if (result == 0)
             {
                 return NotFound();
@@ -53,7 +52,7 @@ namespace APIHospiTEC.Controllers
         }
         [HttpDelete]
         [Route("eliminar_reservacion/{id}")]
-        public async Task<IActionResult> DeleteSalon(int id)
+        public async Task<IActionResult> DeleteReservacion(int id)
         {
             var result = await _postgresql.DeleteReservacionAsync(id);
             if (result == 0)

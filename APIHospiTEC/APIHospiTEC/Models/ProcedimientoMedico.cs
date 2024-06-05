@@ -8,4 +8,9 @@ namespace APIHospiTEC.Models
         public required string nombre { get; set; }
         public required int cantdias {  get; set; }
     }
+    public class ProcedimientoMedicoParaPut
+    {
+        public required string nombre { get; set; }
+        public required int cantdias { get; set; }
+    }
 }

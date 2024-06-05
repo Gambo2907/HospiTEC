@@ -31,29 +31,42 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+
+CREATE OR REPLACE FUNCTION eliminar_telefonos_personal()
+RETURNS TRIGGER AS $$
+BEGIN
+    DELETE FROM telefonos_personal
+	WHERE personalcedula = OLD.cedula;
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
 --Triggers 
-CREATE TRIGGER encriptar_password_paciente
+CREATE OR REPLACE TRIGGER encriptar_password_paciente
 BEFORE INSERT ON paciente
 FOR EACH ROW
 EXECUTE FUNCTION encriptar_password();
 
-CREATE TRIGGER encriptar_password_personal
+CREATE OR REPLACE TRIGGER encriptar_password_personal
 BEFORE INSERT ON personal
 FOR EACH ROW
 EXECUTE FUNCTION encriptar_password();
 
-CREATE TRIGGER encriptar_password_personal_update
+CREATE OR REPLACE TRIGGER encriptar_password_personal_update
 BEFORE UPDATE OF password
 ON personal
 FOR EACH ROW
 EXECUTE FUNCTION encriptar_password();
 
-CREATE TRIGGER trigger_validar_reservacion_unica
+CREATE OR REPLACE TRIGGER trigger_validar_reservacion_unica
 BEFORE INSERT ON reservacion
 FOR EACH ROW
 EXECUTE FUNCTION validar_reservacion_unica();
 
-
+CREATE OR REPLACE TRIGGER tr_eliminar_telefonos_personal
+BEFORE DELETE ON personal
+FOR EACH ROW
+EXECUTE FUNCTION eliminar_telefonos_personal();
 --Procedimientos Almacenados
 
 CREATE OR REPLACE PROCEDURE crear_personal(
@@ -137,3 +150,4 @@ BEGIN
 	WHERE id_elim = id;
 END;
 $$;
+
