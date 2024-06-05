@@ -16,7 +16,22 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
---Triggers para encriptar passwords en paciente y personal
+CREATE OR REPLACE FUNCTION validar_reservacion_unica()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF EXISTS (
+        SELECT 1
+        FROM reservacion
+        WHERE numcama = NEW.numcama
+        AND fechaingreso = NEW.fechaingreso
+    ) THEN
+        RAISE EXCEPTION 'No se puede generar una reservación con el mismo num_cama y fecha_ingreso';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+--Triggers 
 CREATE TRIGGER encriptar_password_paciente
 BEFORE INSERT ON paciente
 FOR EACH ROW
@@ -32,6 +47,12 @@ BEFORE UPDATE OF password
 ON personal
 FOR EACH ROW
 EXECUTE FUNCTION encriptar_password();
+
+CREATE TRIGGER trigger_validar_reservacion_unica
+BEFORE INSERT ON reservacion
+FOR EACH ROW
+EXECUTE FUNCTION validar_reservacion_unica();
+
 
 --Procedimientos Almacenados
 
@@ -88,6 +109,20 @@ AS $$
 BEGIN
 	DELETE FROM personal
 	WHERE ced_elimin = cedula;
+END;
+$$;
+
+CREATE OR REPLACE PROCEDURE crear_reservacion(
+	fechaingreso date = null,
+	cedpaciente int = null,
+	idprocmed int = null,
+	numcama int = null
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+	INSERT INTO reservacion
+	values(default,fechaingreso,cedpaciente,idprocmed,numcama);
 END;
 $$;
 

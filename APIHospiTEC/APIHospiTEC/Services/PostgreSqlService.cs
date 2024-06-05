@@ -102,21 +102,38 @@ namespace APIHospiTEC.Services
         public async Task<List<Dictionary<string, object>>> GetHistorialAsync()
         {
             var query = "SELECT id,fecha,tratamiento,cedulapaciente,id_procedimiento " +
-                "FROM historial_medico";
+                "FROM historial_medico" +
+                "ORDER BY fecha";
             var dataTable = await _dataAccess.ExecuteQueryAsync(query);
             return ConvertDataTableToList(dataTable);
         }
 
-        public async Task<Dictionary<string, object>> GetHistorialPorCedulaAsync(int cedula)
+        public async Task<Dictionary<string, object>?> GetHistorialPorCedulaAsync(int cedula)
         {
             var query = $"SELECT id,fecha,tratamiento,cedulapaciente,id_procedimiento " +
-                $"FROM historial_medico WHERE cedulapaciente = @cedula";
+                $"FROM historial_medico " +
+                $"WHERE cedulapaciente = @cedula" +
+                $"ORDER BY fecha";
             var parameters = new NpgsqlParameter[]
             {
             new NpgsqlParameter("@cedula", cedula)
             };
             var dataTable = await _dataAccess.ExecuteQueryAsync(query, parameters);
             return dataTable.Rows.Count > 0 ? ConvertDataRowToDictionary(dataTable.Rows[0]) : null;
+        }
+        public async Task<int> UpdateHistorialAsync(Historial historial, int cedula)
+        {
+            var query = "UPDATE historial_medico " +
+                "SET  fecha = @fecha, tratamiento = @tratamiento, id_procedimiento = @procedimiento " +
+                "WHERE cedulapaciente = @cedula";
+            var parameters = new NpgsqlParameter[]
+            {
+            new NpgsqlParameter("@fecha", historial.fecha),
+            new NpgsqlParameter("@tratamiento", historial.tratamiento),
+            new NpgsqlParameter("@procedimiento", historial.id_procedimiento),
+            new NpgsqlParameter("@cedula", cedula)
+            };
+            return await _dataAccess.ExecuteNonQueryAsync(query, parameters);
         }
 
         public async Task<int> InsertSalonAsync(int numsalon, string nombre, int? piso, int tipo_de_medicina)
@@ -369,9 +386,8 @@ namespace APIHospiTEC.Services
         public async Task<List<Dictionary<string, object>>> GetCamasAsync()
         {
             var query = @"
-                SELECT c.numcama, c.uci, ec.estado as Estadocama, c.num_salon
-                FROM cama as c
-                JOIN estado_cama as ec ON c.id_estadocama = ec.id;
+                SELECT c.numcama, c.uci, c.num_salon
+                FROM cama as c;
             ";
 
             var dataTable = await _dataAccess.ExecuteQueryAsync(query);
@@ -380,9 +396,8 @@ namespace APIHospiTEC.Services
         public async Task<List<Dictionary<string, object>>> GetCamaPorNumCamaAsync(int numcama)
         {
             var query = @"
-                SELECT c.numcama, c.uci, ec.estado as Estadocama, c.num_salon
+                SELECT c.numcama, c.uci,  c.num_salon
                 FROM cama as c
-                JOIN estado_cama as ec ON c.id_estadocama = ec.id
                 WHERE @numcama = c.numcama;
             ";
             var parameters = new NpgsqlParameter[]
@@ -395,9 +410,8 @@ namespace APIHospiTEC.Services
         public async Task<List<Dictionary<string, object>>> GetCamasPorNumSalonAsync(int numsalon)
         {
             var query = @"
-                SELECT c.numcama, c.uci, ec.estado as Estadocama,c.num_salon 
+                SELECT c.numcama, c.uci, c.num_salon 
                 FROM cama as c
-                JOIN estado_cama as ec ON c.id_estadocama = ec.id
                 WHERE @numsalon = c.num_salon;
             ";
             var parameters = new NpgsqlParameter[]
@@ -410,10 +424,10 @@ namespace APIHospiTEC.Services
         public async Task<List<Dictionary<string, object>>> GetCamasDisponiblesPorNumSalonAsync(int num_salon)
         {
             var query = @"
-                SELECT c.numcama, c.uci, ec.estado as Estadocama, c.num_salon
+                SELECT c.numcama, c.uci, c.num_salon
                 FROM cama as c
-                JOIN estado_cama as ec ON c.id_estadocama = ec.id
-                WHERE @numsalon = c.num_salon AND c.id_estadocama = 1;
+                RIGHT JOIN reservacion as r on c.numcama = r.numcama
+                WHERE @numsalon = c.num_salon AND r.fechaingreso IS NULL OR r.fechaingreso != @fecha ;
             ";
             var parameters = new NpgsqlParameter[]
             {
@@ -422,15 +436,35 @@ namespace APIHospiTEC.Services
             var dataTable = await _dataAccess.ExecuteQueryAsync(query, parameters);
             return ConvertDataTableToList(dataTable);
         }
-        public async Task<List<Dictionary<string, object>>> GetCamasDisponiblesAsync()
+        public async Task<List<Dictionary<string, object>>> GetCamasDisponiblesPorFechaAsync(DateOnly fecha)
         {
             var query = @"
-                SELECT c.numcama, c.uci, ec.estado as Estadocama, c.num_salon
-                FROM cama as c
-                JOIN estado_cama as ec ON c.id_estadocama = ec.id
-                WHERE c.id_estadocama = 1;
+                select c.numcama, c.uci, c.num_salon from reservacion as r
+	            RIGHT JOIN cama as c on r.numcama = c.numcama
+	            Where r.fechaingreso IS NULL OR r.fechaingreso != @fecha;
             ";
-            var dataTable = await _dataAccess.ExecuteQueryAsync(query);
+            var parameters = new NpgsqlParameter[]
+           {
+                new NpgsqlParameter("@fecha", fecha)
+           };
+            var dataTable = await _dataAccess.ExecuteQueryAsync(query,parameters);
+            return ConvertDataTableToList(dataTable);
+        }
+        public async Task<List<Dictionary<string, object>>> GetEquipoPorCamaAsync(int numcama)
+        {
+            var query = @"
+                SELECT em.nombre
+                FROM equipo_por_cama as epc
+                JOIN cama as c ON epc.num_cama = c.numcama
+                JOIN estado_cama as ec ON c.id_estadocama = ec.id
+                JOIN equipo_medico as em ON epc.id_equipomedico = em.id
+                WHERE @numcama = epc.numcama;
+            ";
+            var parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@numcama", numcama)
+            };
+            var dataTable = await _dataAccess.ExecuteQueryAsync(query, parameters);
             return ConvertDataTableToList(dataTable);
         }
 
@@ -555,6 +589,127 @@ namespace APIHospiTEC.Services
                 $"VALUES ('{modelo.cedula}','{modelo.telefono}')";
             return await _dataAccess.ExecuteNonQueryAsync(query);
 
+        }
+        public async Task<int> InsertEquipoAsync(Equipo modelo)
+        {
+            var query = $"INSERT INTO " +
+            $"equipo_medico (nombre , proveedor,cantdisponible)" +
+                $"VALUES ('{modelo.nombre}','{modelo.proveedor}','{modelo.cantdisponible}')";
+            return await _dataAccess.ExecuteNonQueryAsync(query);
+
+        }
+        public async Task<List<Dictionary<string, object>>> GetEquipoPorIdAsync(int id)
+        {
+            var query = @"
+                SELECT *
+                FROM equipo_medico as em
+                WHERE @id = em.id;
+            ";
+            var parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@id",id )
+            };
+            var dataTable = await _dataAccess.ExecuteQueryAsync(query, parameters);
+            return ConvertDataTableToList(dataTable);
+        }
+        public async Task<List<Dictionary<string, object>>> GetEquiposMedicosAsync()
+        {
+            var query = @"
+                SELECT *
+                FROM equipo_medico;
+            ";
+
+            var dataTable = await _dataAccess.ExecuteQueryAsync(query);
+            return ConvertDataTableToList(dataTable);
+        }
+        public async Task<int> InsertReservacionAsync(Reservacion reservacion)
+        {
+            var query = @"
+                        CALL crear_reservacion(@fechaingreso,@cedpaciente,@idprocmed,@numcama);";
+            var parameters = new NpgsqlParameter[]
+            {
+            new NpgsqlParameter("@fechaingreso", reservacion.fechaingreso),
+            new NpgsqlParameter("@cedpaciente", reservacion.cedpaciente),
+            new NpgsqlParameter("@idprocmed", reservacion.idprocmed),
+            new NpgsqlParameter("@numcama", reservacion.numcama)
+            };
+            return await _dataAccess.ExecuteNonQueryAsync(query, parameters);
+
+        }
+        public async Task<int> UpdateEquipoAsync(Equipo modelo)
+        {
+            var query = "UPDATE equipo_medico " +
+                "SET  nombre = @nombre, proveedor = @proveedor, cantdisponible = @cant" +
+                "WHERE id = @id";
+            var parameters = new NpgsqlParameter[]
+            {
+            new NpgsqlParameter("@id", modelo.id),
+            new NpgsqlParameter("@nombre", modelo.nombre),
+            new NpgsqlParameter("@proveedor", modelo.proveedor),
+            new NpgsqlParameter("@cant", modelo.cantdisponible)
+            };
+            return await _dataAccess.ExecuteNonQueryAsync(query, parameters);
+        }
+
+        public async Task<List<Dictionary<string, object>>> GetReservacionesPorCedulaAsync(int cedula)
+        {
+            var query = @"
+                SELECT r.id,
+                r.fechaingreso, r.cedpaciente, r.numcama,p.nombre, 
+                r.fechaingreso + INTERVAL '1 day' * p.cantdias AS fecha_salida
+                FROM reservacion r
+                JOIN procedimiento_medico p ON r.idprocmed = p.id
+                WHERE cedpaciente = @cedula;
+                ";
+            var parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@cedula", cedula)
+            };
+            var dataTable = await _dataAccess.ExecuteQueryAsync(query, parameters);
+            return ConvertDataTableToList(dataTable);
+        }
+        public async Task<List<Dictionary<string, object>>> GetReservacionesPorFechaAsync(DateOnly fecha,int cedula)
+        {
+            var query = @"
+                SELECT r.id,
+                r.fechaingreso, r.cedpaciente, r.numcama,p.nombre, 
+                r.fechaingreso + INTERVAL '1 day' * p.cantdias AS fecha_salida
+                FROM reservacion r
+                JOIN procedimiento_medico p ON r.idprocmed = p.id
+                WHERE cedpaciente = @cedula AND r.fechaingreso = @fecha;
+                ";
+            var parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@cedula", cedula),
+                new NpgsqlParameter("@fecha", fecha)
+            };
+            var dataTable = await _dataAccess.ExecuteQueryAsync(query, parameters);
+            return ConvertDataTableToList(dataTable);
+        }
+        public async Task<int> UpdateReservacionAsync(Reservacion modelo)
+        {
+            var query = "UPDATE reservacion " +
+                "SET  fechaingreso = @fecha, idprocmed = @procmed, numcama = @numcama"  +
+                "WHERE id = @id";
+            var parameters = new NpgsqlParameter[]
+            {
+            new NpgsqlParameter("@id", modelo.id),
+            new NpgsqlParameter("@fecha", modelo.fechaingreso),
+            new NpgsqlParameter("@procmed", modelo.idprocmed),
+            new NpgsqlParameter("@numcama", modelo.numcama)
+            };
+            return await _dataAccess.ExecuteNonQueryAsync(query, parameters);
+        }
+
+        public async Task<int> DeleteReservacionAsync(int id)
+        {
+            var query = @"DELETE FROM reservacion
+                        WHERE id = @id;";
+            var parameters = new NpgsqlParameter[]
+            {
+            new NpgsqlParameter("@id", id)
+            };
+            return await _dataAccess.ExecuteNonQueryAsync(query, parameters);
         }
 
         public async Task<string> EncryptPassword(string? password)

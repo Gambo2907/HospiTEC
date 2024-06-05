@@ -1,4 +1,4 @@
-﻿namespace APIHospiTEC.Services
+﻿namespace APIHospiTEC.Models
 {
     public class Telefonos
     {
