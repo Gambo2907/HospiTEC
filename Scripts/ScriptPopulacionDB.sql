@@ -43,53 +43,53 @@ VALUES(6,'Respiradores Artificiales','Eleinmsa',75);
 INSERT INTO EQUIPO_MEDICO
 VALUES(7,'Electrocardiografos','Eleinmsa',65);
 
-INSERT INTO PROCEDIMIENTO_MEDICO
-VALUES(1,'Apendicectomia',7);
-
-INSERT INTO PROCEDIMIENTO_MEDICO
-VALUES(2,'Biopsia de Mama',5);
-
-INSERT INTO PROCEDIMIENTO_MEDICO
-VALUES(3,'Cirugia de Cataratas',2);
-
-INSERT INTO PROCEDIMIENTO_MEDICO
-VALUES(4,'Cesarea',3);
-
-INSERT INTO PROCEDIMIENTO_MEDICO
-VALUES(5,'Histerectomia',6);
-
-INSERT INTO PROCEDIMIENTO_MEDICO
-VALUES(6,'Cirugia para la Lumbalgia',12);
-
-INSERT INTO PROCEDIMIENTO_MEDICO
-VALUES(7,'Mastectomia',5);
-
-INSERT INTO PROCEDIMIENTO_MEDICO
-VALUES(8,'Amigdalectomia',1);
+INSERT INTO patologia
+VALUES(1, 'Rinitis Cronica');
 
 INSERT INTO patologia
-VALUES(DEFAULT, 'Rinitis Cronica');
+VALUES(2, 'Dermatitis');
 
 INSERT INTO patologia
-VALUES(DEFAULT, 'Dermatitis');
+VALUES(3, 'Psoriasis');
 
 INSERT INTO patologia
-VALUES(DEFAULT, 'Psoriasis');
+VALUES(4, 'Acne');
 
 INSERT INTO patologia
-VALUES(DEFAULT, 'Acne');
+VALUES(5, 'Alopecia');
 
 INSERT INTO patologia
-VALUES(DEFAULT, 'Alopecia');
+VALUES(6, 'Amigdalitis');
 
 INSERT INTO patologia
-VALUES(DEFAULT, 'Amigdalitis');
+VALUES(7, 'Hipertensión');
 
 INSERT INTO patologia
-VALUES(DEFAULT, 'Hipertensión');
+VALUES(8, 'Asma');
 
-INSERT INTO patologia
-VALUES(DEFAULT, 'Asma');
+INSERT INTO PROCEDIMIENTO_MEDICO
+VALUES(1,'Apendicectomia',1,7);
+
+INSERT INTO PROCEDIMIENTO_MEDICO
+VALUES(2,'Biopsia de Mama',2,5);
+
+INSERT INTO PROCEDIMIENTO_MEDICO
+VALUES(3,'Cirugia de Cataratas',1,2);
+
+INSERT INTO PROCEDIMIENTO_MEDICO
+VALUES(4,'Cesarea',2,3);
+
+INSERT INTO PROCEDIMIENTO_MEDICO
+VALUES(5,'Histerectomia',2,6);
+
+INSERT INTO PROCEDIMIENTO_MEDICO
+VALUES(6,'Cirugia para la Lumbalgia',1,12);
+
+INSERT INTO PROCEDIMIENTO_MEDICO
+VALUES(7,'Mastectomia',2,5);
+
+INSERT INTO PROCEDIMIENTO_MEDICO
+VALUES(8,'Amigdalectomia',3,1);
 
 Insert into salon
 values(1,'Salon1',2,1);

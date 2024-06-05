@@ -22,6 +22,13 @@ namespace APIHospiTEC.Controllers
             var result = await _postgresql.InsertCamaAsync(modelo);
             return Ok(result);
         }
+        [HttpPost]
+        [Route("crear_equipo_por_cama")]
+        public async Task<IActionResult> InsertEquipoPorCama(EquipoPorCama modelo)
+        {
+            var result = await _postgresql.InsertEquipoPorCamaAsync(modelo);
+            return Ok(result);
+        }
         [HttpGet]
         [Route("camas")]
         public async Task<IActionResult> GetCamas()

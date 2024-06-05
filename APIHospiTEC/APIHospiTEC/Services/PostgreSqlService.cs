@@ -19,22 +19,36 @@ namespace APIHospiTEC.Services
         //Obtiene los procedimientos medicos que hay en la db 
         public async Task<List<Dictionary<string, object>>> GetProcedimientosMedicosAsync()
         {
-            var query = "SELECT * FROM procedimiento_medico";
+            var query = @"SELECT pm.id,pm.nombre,pat.nombre as patologia,pm.cantdias
+                FROM procedimiento_medico as pm
+                JOIN patologia as pat ON pm.idpatologia = pat.id; ";
             var dataTable = await _dataAccess.ExecuteQueryAsync(query);
             return ConvertDataTableToList(dataTable);
         }
 
         //Inserta un procedimiento medico en la tabla procedimientos_medicos en la db 
-        public async Task<int> InsertProcedimientoMedicoAsync(string nombre, int cantdias)
+        public async Task<int> InsertProcedimientoMedicoAsync(ProcedimientoMedico procedimiento)
         {
-            var query = $"INSERT INTO procedimiento_medico (nombre,cantdias) VALUES ('{nombre}','{cantdias}')";
-            return  await _dataAccess.ExecuteNonQueryAsync(query);
+            var query = @"INSERT INTO
+                        procedimiento_medico
+                        VALUES(@id,@nombre,@idpat,@cantdias);";
+            var parameters = new NpgsqlParameter[]
+            {
+            new NpgsqlParameter("@id", procedimiento.id),
+            new NpgsqlParameter("@nombre", procedimiento.nombre),
+            new NpgsqlParameter("@idpat", procedimiento.idpatologia),
+            new NpgsqlParameter("@cantdias", procedimiento.cantdias),
+            };
+            return  await _dataAccess.ExecuteNonQueryAsync(query,parameters);
             
         }
 
         public async Task<Dictionary<string, object>> GetProcedimientoMedicoPorIDAsync(int id)
         {
-            var query = $"SELECT * FROM procedimiento_medico WHERE id = @id";
+            var query = @"SELECT pm.id,pm.nombre,pat.nombre as patologia,pm.cantdias
+                FROM procedimiento_medico as pm
+                JOIN patologia as pat ON pm.idpatologia = pat.id
+                WHERE pm.id = @id; ";
             var parameters = new NpgsqlParameter[]
             {
             new NpgsqlParameter("@id", id)
@@ -44,13 +58,14 @@ namespace APIHospiTEC.Services
         }
         public async Task<int> UpdateProcedimientoMedicoAsync(ProcedimientoMedicoParaPut procedimiento, int id)
         {
-            var query = "UPDATE procedimiento_medico " +
-                "SET nombre = @nombre, cantdias = @cantdias " +
-                "WHERE id = @id";
+            var query = @"UPDATE procedimiento_medico 
+                SET nombre = @nombre,idpatologia = @idpat,cantdias = @cantdias 
+                WHERE id = @id;";
             var parameters = new NpgsqlParameter[]
             {
             new NpgsqlParameter("@id", id),
             new NpgsqlParameter("@nombre",procedimiento.nombre),
+            new NpgsqlParameter("@idpat", procedimiento.idpatologia),
             new NpgsqlParameter("@cantdias", procedimiento.cantdias)
             };
             return await _dataAccess.ExecuteNonQueryAsync(query, parameters);
@@ -384,7 +399,7 @@ namespace APIHospiTEC.Services
         public async Task<int> InsertCamaAsync(Cama cama)
         {
             var query = $"INSERT INTO cama (numcama,uci,id_estadocama,num_salon) " +
-                $"VALUES ('{cama.numcama}','{cama.uci}','{cama.id_estadocama}','{cama.num_salon}')";
+                $"VALUES ('{cama.numcama}','{cama.uci}','{1}','{cama.num_salon}')";
             return await _dataAccess.ExecuteNonQueryAsync(query);
 
         }
@@ -464,13 +479,12 @@ namespace APIHospiTEC.Services
         public async Task<int> UpdateCamaAsync(CamaParaPut cama, int numcama)
         {
             var query = "UPDATE cama " +
-                "SET  uci = @uci, id_estadocama = @id_estadocama, num_salon = @num_salon " +
+                "SET  uci = @uci, num_salon = @num_salon " +
                 "WHERE numcama = @numcama";
             var parameters = new NpgsqlParameter[]
             {
             new NpgsqlParameter("@numcama", numcama),
             new NpgsqlParameter("@uci", cama.uci),
-            new NpgsqlParameter("@id_estadocama", cama.id_estadocama),
             new NpgsqlParameter("@num_salon", cama.num_salon)
             };
             return await _dataAccess.ExecuteNonQueryAsync(query, parameters);
@@ -583,11 +597,24 @@ namespace APIHospiTEC.Services
             return await _dataAccess.ExecuteNonQueryAsync(query);
 
         }
+        public async Task<int> InsertEquipoPorCamaAsync(EquipoPorCama modelo)
+        {
+            var query = @"INSERT INTO
+                         equipo_por_cama
+                        VALUES(@numcama,@idequipo);";
+            var parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@numcama", modelo.num_cama),
+                 new NpgsqlParameter("@idequipo", modelo.id_equipomedico)
+            };
+            return await _dataAccess.ExecuteNonQueryAsync(query,parameters);
+
+        }
         public async Task<int> InsertEquipoAsync(Equipo modelo)
         {
             var query = $"INSERT INTO " +
-            $"equipo_medico (nombre , proveedor,cantdisponible)" +
-                $"VALUES ('{modelo.nombre}','{modelo.proveedor}','{modelo.cantdisponible}')";
+            $"equipo_medico (id,nombre , proveedor,cantdisponible)" +
+                $"VALUES ('{modelo.id}','{modelo.nombre}','{modelo.proveedor}','{modelo.cantdisponible}')";
             return await _dataAccess.ExecuteNonQueryAsync(query);
 
         }
@@ -631,9 +658,9 @@ namespace APIHospiTEC.Services
         }
         public async Task<int> UpdateEquipoAsync(EquipoParaPut modelo, int id)
         {
-            var query = "UPDATE equipo_medico " +
-                "SET nombre = @nombre, proveedor = @proveedor, cantdisponible = @cant" +
-                "WHERE id = @id;";
+            var query = @"UPDATE equipo_medico
+                        SET nombre = @nombre, proveedor = @proveedor, cantdisponible = @cant
+                        WHERE @id = id;";
             var parameters = new NpgsqlParameter[]
             {
             new NpgsqlParameter("@id", id),
