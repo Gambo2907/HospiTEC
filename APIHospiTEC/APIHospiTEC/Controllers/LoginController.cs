@@ -16,11 +16,11 @@ namespace APIHospiTEC.Controllers
             _postgresql = postgresql;
         }
         [HttpPost]
-        [Route("login_personal")]
-        public async Task<IActionResult> LoginPersonal(Login modelo)
+        [Route("login_doctor")]
+        public async Task<IActionResult> LoginDoctor(Login modelo)
         {
             var passwordencrypt = await _postgresql.EncryptPassword(modelo.password);
-            var user = await _postgresql.LoginPersonalAsync(modelo.correo,passwordencrypt);
+            var user = await _postgresql.LoginDoctorAsync(modelo.correo,passwordencrypt);
             if (user == null)
             {
                 return NotFound();

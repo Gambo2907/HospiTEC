@@ -46,6 +46,19 @@ namespace APIHospiTEC.Controllers
             }
             return Ok(data);
         }
+        [HttpPut]
+        [Route("actualizar_historial/{id}")]
+
+        public async Task<IActionResult> UpdateHistorial([FromBody] HistorialParaPut modelo, int id)
+        {
+            var result = await _postgresql.UpdateHistorialAsync(modelo,id);
+            if (result == 0)
+            {
+                return NotFound();
+            }
+            else
+                return Ok(result);
+        }
 
     }
 }

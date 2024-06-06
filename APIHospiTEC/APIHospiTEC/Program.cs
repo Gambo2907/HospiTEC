@@ -30,6 +30,11 @@ namespace APIHospiTEC
                 app.UseSwaggerUI();
             }
 
+            app.UseCors(builder =>
+            builder.AllowAnyOrigin() // Permite solicitudes desde cualquier origen
+                  .AllowAnyMethod() // Métodos HTTP permitidos
+                  .AllowAnyHeader()); // Encabezados permitidos
+
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

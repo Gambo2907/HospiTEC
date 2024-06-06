@@ -26,6 +26,46 @@ namespace APIHospiTEC.Controllers
             return Ok(result);
 
         }
+        [HttpPost]
+        [Route("registrar_patologia_por_paciente")]
+
+        public async Task<IActionResult> InsertPatologiaPorPaciente(PatologiaPorPaciente modelo)
+        {
+            var result = await _postgresql.InsertPatologiaPorPacienteAsync(modelo.id_patologia,modelo.cedulapaciente,modelo.tratamiento);
+            return Ok(result);
+
+        }
+        [HttpPost]
+        [Route("registrar_telefono_paciente")]
+
+        public async Task<IActionResult> InsertTelefonoPaciente(Telefonos modelo)
+        {
+            var result = await _postgresql.InsertTelefonoPacienteAsync(modelo);
+            return Ok(result);
+
+        }
+        [HttpGet]
+        [Route("telefonos_paciente/{cedula}")]
+        public async Task<IActionResult> GetTelefonosPorCedulaPaciente(int cedula)
+        {
+            var data = await _postgresql.GetTelefonosPorPacienteAsync(cedula);
+            if (data == null)
+            {
+                return NotFound();
+            }
+            return Ok(data);
+        }
+        [HttpGet]
+        [Route("patologias/{cedula}")]
+        public async Task<IActionResult> GetPatologiasPorCedula(int cedula)
+        {
+            var data = await _postgresql.GetPatologiasPorPacienteAsync(cedula);
+            if (data == null)
+            {
+                return NotFound();
+            }
+            return Ok(data);
+        }
 
         [HttpGet]
         [Route("pacientes_registrados")]
@@ -37,7 +77,7 @@ namespace APIHospiTEC.Controllers
 
         [HttpGet]
         [Route("paciente/{cedula}")]
-        public async Task<IActionResult> GetPaciente(int cedula)
+        public async Task<IActionResult> GetPacientePorCedula(int cedula)
         {
             var data = await _postgresql.GetPacientePorCedulaAsync(cedula);
             if (data == null)
