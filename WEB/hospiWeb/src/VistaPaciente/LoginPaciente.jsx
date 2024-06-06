@@ -15,62 +15,37 @@ const LoginPaciente = () => {
       })
    
     const go = useNavigate();
-     //------------------------------------ESTO HAY  QUE MODIFICARLO----------------------
     useEffect(() => {
-        if(localStorage.getItem('user-info')){
-            <Navigate to='/login' />
-        }
+    
+            <Navigate to='/profesoresr' />
+  
     }, [])
   
-  
-  
     const handleSubmit = (event) =>{
-        event.preventDefault();
-  
-      }
+      event.preventDefault();
+
+    }
     const login = async(e) =>{
       e.preventDefault();
    //------------------------------------ESTO HAY  QUE MODIFICARLO----------------------
-      //Si se validan los datos se guarda en el local storage el rol del user
-      axios.post('https://localhost:7215/api/Login/login_operador',values)
-      .then(res => setData(res.data),  localStorage.setItem('user-info', true), localStorage.setItem('data', JSON.stringify(data)))
+      //Si se validan los imprime un mensaje en consola
+      axios.post('http://localhost:5197/api/Login/login_pacientes',values)
+      .then(res => setData(res.data),  localStorage.setItem('user-info', true), localStorage.setItem('data-paciente', JSON.stringify(data)))
       .then(() => {
-        console.log(data.correo);
-        console.log(data.password);
-        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        <Navigate to='/' />
-       // localStorage.setItem('user-info', JSON.stringify(res.data));
-        console.log(localStorage.getItem('user-info'));
+        console.log("Hizo loggggg");
+       // go('/paciente/reservacion')
       })
       .catch(err => console.log(err));
+
+      axios.post('http://localhost:5197/api/Login/login_pacientes',values)
+      .then(res => localStorage.setItem('data-paciente', JSON.stringify(res.data)))
+      .then(() => {
+        localStorage.setItem('userPaciente', true)
+        go('/paciente/reservacion')
+      })
+      .catch(err => console.log(err));
+
         
-
-
- //------------------------------------ESTO HAY  QUE MODIFICARLO----------------------
-
-      //Se guarda la hora de entrrada al trabajo en el localstorage
-      axios.post('https://localhost:7215/api/Login/login_operador',values)
-      .then(res => localStorage.setItem('data', JSON.stringify(res.data)))
-      .then(() => {
-        localStorage.setItem('userOperador', true)
-        const fechaActual = new Date(); // Obtener la fecha y hora actual
-        const fechaFormateada = fechaActual.toISOString().split('T')[0]; // Formatear la fecha a 'YYYY-MM-DD'
-      
-        const horas = fechaActual.getHours().toString().padStart(2, '0');
-        const minutos = fechaActual.getMinutes().toString().padStart(2, '0');
-        const segundos = fechaActual.getSeconds().toString().padStart(2, '0');
-        const horaActual = `${horas}:${minutos}:${segundos}`;
-        localStorage.setItem('horaEntrada', horaActual)
-  
-        console.log(data.correo);
-        console.log(data.password);
-        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        go('/operador/prestamoestudiantes')
-       // localStorage.setItem('user-info', JSON.stringify(res.data));
-        console.log(localStorage.getItem('user-info'));
-      })
-      .catch(err => console.log(err));
-  
   
     }
   
