@@ -78,3 +78,13 @@ C:\Users\nicva\HospiTEC\APIHospiTEC\APIHospiTEC\obj\Debug\net8.0\APIHospiTEC.sou
 C:\Users\nicva\HospiTEC\APIHospiTEC\APIHospiTEC\obj\Debug\net8.0\APIHospiTEC.dll
 C:\Users\nicva\HospiTEC\APIHospiTEC\APIHospiTEC\obj\Debug\net8.0\refint\APIHospiTEC.dll
 C:\Users\nicva\HospiTEC\APIHospiTEC\APIHospiTEC\obj\Debug\net8.0\APIHospiTEC.pdb
+C:\Users\User\Documents\GitHub\HospiTEC\APIHospiTEC\APIHospiTEC\bin\Debug\net8.0\ExcelDataReader.dll
+C:\Users\User\Documents\GitHub\HospiTEC\APIHospiTEC\APIHospiTEC\bin\Debug\net8.0\ExcelDataReader.DataSet.dll
+C:\Users\User\Documents\GitHub\HospiTEC\APIHospiTEC\APIHospiTEC\bin\Debug\net8.0\ClosedXML.dll
+C:\Users\User\Documents\GitHub\HospiTEC\APIHospiTEC\APIHospiTEC\bin\Debug\net8.0\DocumentFormat.OpenXml.dll
+C:\Users\User\Documents\GitHub\HospiTEC\APIHospiTEC\APIHospiTEC\bin\Debug\net8.0\ExcelNumberFormat.dll
+C:\Users\User\Documents\GitHub\HospiTEC\APIHospiTEC\APIHospiTEC\bin\Debug\net8.0\Irony.dll
+C:\Users\User\Documents\GitHub\HospiTEC\APIHospiTEC\APIHospiTEC\bin\Debug\net8.0\SixLabors.Fonts.dll
+C:\Users\User\Documents\GitHub\HospiTEC\APIHospiTEC\APIHospiTEC\bin\Debug\net8.0\System.ClientModel.dll
+C:\Users\User\Documents\GitHub\HospiTEC\APIHospiTEC\APIHospiTEC\bin\Debug\net8.0\System.IO.Packaging.dll
+C:\Users\User\Documents\GitHub\HospiTEC\APIHospiTEC\APIHospiTEC\bin\Debug\net8.0\XLParser.dll

@@ -10,9 +10,40 @@ namespace APIHospiTEC.Data
 
         private readonly string _connectionString;
 
+
         public DataAccessLayer(string connectionString)
         {
             _connectionString = connectionString;
+
+        }
+        public async Task BulkInsertAsync(string tableName, DataTable dataTable)
+        {
+
+            using var connection = new NpgsqlConnection(_connectionString);
+            await connection.OpenAsync();
+            using var transaction = await connection.BeginTransactionAsync();
+            try
+            {
+                using var writer = connection.BeginBinaryImport($"COPY {tableName} FROM STDIN (FORMAT BINARY)");
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    writer.StartRow();
+                    foreach (var item in row.ItemArray)
+                    {
+                        writer.Write(item);
+                    }
+                }
+
+                await writer.CompleteAsync();
+                await transaction.CommitAsync();
+
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
         }
 
         private async Task<NpgsqlConnection> GetConnectionAsync()
@@ -84,6 +115,15 @@ namespace APIHospiTEC.Data
                 command.Parameters.AddRange(parameters);
             }
             return await command.ExecuteNonQueryAsync();
+        }
+        public async Task ExecuteStoredProcedureAsync(string procedureName)
+        {
+            using var connection = await GetConnectionAsync();
+            using var command = new NpgsqlCommand(procedureName, connection)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            await command.ExecuteNonQueryAsync();
         }
 
 
