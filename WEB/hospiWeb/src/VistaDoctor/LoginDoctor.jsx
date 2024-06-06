@@ -5,95 +5,81 @@ import DivInput from '../Components/DivInput';
 
 const LoginDoctor = () => {
 
+  const [data, setData] = useState([]);
 
-    const [data, setData] = useState([]);
-
-    const [values, setValues] = useState({
-        correo: '',
-        password: '',
-      })
-   
-    const go = useNavigate();
-     //------------------------------------ESTO HAY  QUE MODIFICARLO----------------------
-    useEffect(() => {
-        if(localStorage.getItem('user-info')){
-            <Navigate to='/profesoresr' />
-        }
-    }, [])
-
-
-
-    const handleSubmit = (event) =>{
-        event.preventDefault();
-
-      }
-    //Se guarda el tipo de usuario
-    const login = async(e) =>{
-      e.preventDefault();
-
-    //------------------------------------ESTO HAY  QUE MODIFICARLO----------------------
-
-      axios.post('https://localhost:7215/api/Login/login_admin',values)
-      .then(res => setData(res.data),  localStorage.setItem('user-info', true), localStorage.setItem('data', JSON.stringify(data)))
-      .then(() => {
-        console.log(data.correo);
-        console.log(data.password);
-        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        <Navigate to='/' />
-       // localStorage.setItem('user-info', JSON.stringify(res.data));
-        console.log(localStorage.getItem('user-info'));
-      })
-      .catch(err => console.log(err));
-        
-       //------------------------------------ESTO HAY  QUE MODIFICARLO----------------------
-      axios.post('https://localhost:7215/api/Login/login_admin',values)
-      .then(res => localStorage.setItem('data', JSON.stringify(res.data)))
-      .then(() => {
-        localStorage.setItem('userAdmin', true)
-        console.log(data.correo);
-        console.log(data.password);
-        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        go('/profesores')
-       // localStorage.setItem('user-info', JSON.stringify(res.data));
-        console.log(localStorage.getItem('user-info'));
-      })
-      .catch(err => console.log(err));
-
-
-    }
+  //Se guarda el corre y password para enviarlo a la api
+  const [values, setValues] = useState({
+      correo: '',
+      password: '',
+    })
+ 
+  const go = useNavigate();
+  useEffect(() => {
   
-    
+          <Navigate to='/profesoresr' />
+
+  }, [])
+
+  const handleSubmit = (event) =>{
+    event.preventDefault();
+
+  }
+  const login = async(e) =>{
+    e.preventDefault();
+ //------------------------------------ESTO HAY  QUE MODIFICARLO----------------------
+    //Si se validan los imprime un mensaje en consola
+    axios.post('https://localhost:7061/api/Login/login_doctor',values)
+    .then(res => setData(res.data),  localStorage.setItem('user-info', true), localStorage.setItem('data-doctor', JSON.stringify(data)))
+    .then(() => {
+      console.log("Hizo loggggg");
+     // go('/paciente/reservacion')
+    })
+    .catch(err => console.log(err));
+
+    axios.post('https://localhost:7061/api/Login/login_doctor',values)
+    .then(res => localStorage.setItem('data-doctor', JSON.stringify(res.data)))
+    .then(() => {
+      localStorage.setItem('userDoctor', true)
+      go('/doctor/menu')
+    })
+    .catch(err => console.log(err));
+
+      
+
+  }
+
   
-    return (
-      <div className='container-fluid'>
-        <div className='row mt-5'>
-          <div className='col-md-4 offset-md-4'>
-            <div className='card border border-dark'>
-              <div className='card-header bg-dark border border-dark 
-              text-white'>
-                LOGIN DOCTOR
-              </div>
-              <div className='card-body'>
-                <form onSubmit={login}>
-                  <DivInput type='email' icon='fa-at' value={values.correo}
-                  className='form-control' placeholder='Email' required='required'
-                  handleChange={(e)=> setValues({...values,correo: e.target.value})} />
-                  <DivInput type='password' icon='fa-key' value={values.password}
-                  className='form-control' placeholder='Password' required='required'
-                  handleChange={(e)=> setValues({...values,password: e.target.value})} />
-                  <div className='d-grid col-10 mx-auto'>
-                    <button className='btn btn-dark'>
-                      <i className='fa-solid fa-door-open'></i>
-                      LOGIN
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>  
-          </div>
+  //Formulario y botones
+  return (
+    <div className='container-fluid'>
+      <div className='row mt-5'>
+        <div className='col-md-4 offset-md-4'>
+          <div className='card border border-dark'>
+            <div className='card-header bg-dark border border-dark 
+            text-white'>
+              LOGIN DOCTOR
+            </div>
+            <div className='card-body'>
+              <form onSubmit={login}>
+                <DivInput type='email' icon='fa-at' value={values.correo}
+                className='form-control' placeholder='Email' required='required'
+                handleChange={(e)=> setValues({...values,correo: e.target.value})} />
+                <DivInput type='password' icon='fa-key' value={values.password}
+                className='form-control' placeholder='Password' required='required'
+                handleChange={(e)=> setValues({...values,password: e.target.value})} />
+                <div className='d-grid col-10 mx-auto'>
+                  <button className='btn btn-dark'>
+                    <i className='fa-solid fa-door-open'></i>
+                    LOGIN
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>  
         </div>
       </div>
-    )
-  }
+    </div>
+  )
+}
 
 export default LoginDoctor
