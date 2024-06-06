@@ -1,7 +1,10 @@
 ﻿using APIHospiTEC.Models;
 using APIHospiTEC.Services;
+using ExcelDataReader;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Npgsql;
+using System.Data;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace APIHospiTEC.Controllers
@@ -11,6 +14,7 @@ namespace APIHospiTEC.Controllers
     public class PacienteController : ControllerBase
     {
         private readonly PostgreSqlService _postgresql;
+        private readonly string _connectionString = "Server=localhost;Port=5432;Database=HospiTEC; User Id = postgres; Password= 1234;";
 
         public PacienteController(PostgreSqlService postgresql)
         {
@@ -31,7 +35,7 @@ namespace APIHospiTEC.Controllers
 
         public async Task<IActionResult> InsertPatologiaPorPaciente(PatologiaPorPaciente modelo)
         {
-            var result = await _postgresql.InsertPatologiaPorPacienteAsync(modelo.id_patologia,modelo.cedulapaciente,modelo.tratamiento);
+            var result = await _postgresql.InsertPatologiaPorPacienteAsync(modelo.id_patologia, modelo.cedulapaciente, modelo.tratamiento);
             return Ok(result);
 
         }
@@ -86,6 +90,19 @@ namespace APIHospiTEC.Controllers
             }
             return Ok(data);
         }
+        [HttpPost("importar-pacientes")]
+        public async Task<IActionResult> ImportarPacientes([FromForm] ImportarPacientes file)
+        {
+            try
+            {
+                await _postgresql.ImportarPacientesAsync(file.Archivo);
+                return Ok("Importación completada con éxito.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error al importar pacientes: {ex.Message}");
+            }
 
+        }
     }
 }

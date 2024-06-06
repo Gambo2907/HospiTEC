@@ -1,5 +1,8 @@
 ﻿using APIHospiTEC.Data;
 using APIHospiTEC.Models;
+using ClosedXML.Excel;
+using DocumentFormat.OpenXml;
+using Microsoft.AspNetCore.Mvc;
 using Npgsql;
 using System.Data;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -753,5 +756,67 @@ namespace APIHospiTEC.Services
 
             return dict;
         }
+        public async Task ImportarPacientesAsync(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+            {
+                throw new ArgumentException("No se ha subido ningún archivo.");
+            }
+
+            var filePath = Path.GetTempFileName() + ".xlsx";
+            using (var stream = File.Create(filePath))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            await ImportExcelAsync(filePath);
+
+            // Ejecutar el procedimiento almacenado
+            await _dataAccess.ExecuteStoredProcedureAsync("transferir_pacientes_desde_temporal");
+        }
+        private async Task ImportExcelAsync(string filePath)
+        {
+            using var workbook = new XLWorkbook(filePath);
+            var worksheet = workbook.Worksheet(1);
+
+            var dataTable = new DataTable();
+            dataTable.Columns.Add("nombre", typeof(string));
+            dataTable.Columns.Add("ap1", typeof(string));
+            dataTable.Columns.Add("ap2", typeof(string));
+            dataTable.Columns.Add("cedula", typeof(int));
+            dataTable.Columns.Add("nacimiento", typeof(DateTime));
+            dataTable.Columns.Add("direccion", typeof(string));
+            dataTable.Columns.Add("correo", typeof(string));
+            dataTable.Columns.Add("password", typeof(string));
+
+            var telefonoTable = new DataTable();
+            telefonoTable.Columns.Add("cedula", typeof(int));
+            telefonoTable.Columns.Add("telefono1", typeof(string));
+            telefonoTable.Columns.Add("telefono2", typeof(string));
+
+            foreach (var row in worksheet.RowsUsed().Skip(1))
+            {
+                var newRow = dataTable.NewRow();
+                newRow["nombre"] = row.Cell(1).GetValue<string>();
+                newRow["ap1"] = row.Cell(2).GetValue<string>();
+                newRow["ap2"] = row.Cell(3).GetValue<string>();
+                newRow["cedula"] = row.Cell(4).GetValue<int>();
+                newRow["nacimiento"] = row.Cell(5).GetValue<DateTime>();
+                newRow["direccion"] = row.Cell(6).GetValue<string>();
+                newRow["correo"] = row.Cell(7).GetValue<string>();
+                newRow["password"] = row.Cell(8).GetValue<string>();
+                dataTable.Rows.Add(newRow);
+
+                var telRow = telefonoTable.NewRow();
+                telRow["cedula"] = row.Cell(4).GetValue<int>();
+                telRow["telefono1"] = row.Cell(9).GetValue<string>();
+                telRow["telefono2"] = row.Cell(10).GetValue<string>();
+                telefonoTable.Rows.Add(telRow);
+            }
+
+            await _dataAccess.BulkInsertAsync("temp_paciente", dataTable);
+            await _dataAccess.BulkInsertAsync("temp_telefonos_paciente", telefonoTable);
+        }
+
     }
 }

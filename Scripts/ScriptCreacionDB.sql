@@ -186,5 +186,21 @@ ADD CONSTRAINT "key17" FOREIGN KEY(IDPatologia)
 REFERENCES Patologia(ID);
 
 
+CREATE TABLE temp_paciente(
+	Nombre VARCHAR(100) NOT NULL,
+	AP1 VARCHAR(100) NOT NULL,
+	AP2 VARCHAR(100) NOT NULL,
+	Cedula INT UNIQUE NOT NULL,
+	Nacimiento DATE NOT NULL,
+	Direccion VARCHAR(200),
+	Correo VARCHAR(100) NOT NULL,
+	Password VARCHAR(100) NOT NULL,
+	PRIMARY KEY(Cedula)
+);
 
+CREATE TABLE temp_telefonos_paciente(
+	ID SERIAL PRIMARY KEY,
+	PacienteCedula INT NOT NULL,
+	Telefono VARCHAR(20) NOT NULL
+);
 

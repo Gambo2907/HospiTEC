@@ -151,3 +151,25 @@ BEGIN
 END;
 $$;
 
+CREATE OR REPLACE PROCEDURE transferir_pacientes_desde_temporal()
+LANGUAGE plpgsql
+AS $$
+BEGIN
+
+    INSERT INTO paciente (nombre, ap1,ap2, cedula, nacimiento,direccion,correo,password)
+    SELECT nombre, edad, cedula, fecha_nacimiento
+    FROM temp_paciente
+    ON CONFLICT (cedula) DO NOTHING;  -- Evita duplicados basados en cedula
+
+    -- Inserta los teléfonos
+    INSERT INTO telefonos_paciente (pacientecedula, telefono)
+    SELECT pacientecedula, telefono
+    FROM temp_telefonos_paciente
+    ON CONFLICT DO NOTHING;  
+
+    -- Limpia las tablas temporales después de la transferencia
+    TRUNCATE TABLE temp_paciente;
+    TRUNCATE TABLE temp_telefonos_paciente;
+END;
+$$;
+

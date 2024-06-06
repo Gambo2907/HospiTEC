@@ -50,9 +50,21 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "ClosedXML": {
+              "target": "Package",
+              "version": "[0.102.2, )"
+            },
+            "ExcelDataReader": {
+              "target": "Package",
+              "version": "[3.6.0, )"
+            },
+            "ExcelDataReader.DataSet": {
+              "target": "Package",
+              "version": "[3.6.0, )"
+            },
             "Microsoft.Data.SqlClient": {
               "target": "Package",
-              "version": "[5.2.0, )"
+              "version": "[5.2.1, )"
             },
             "Npgsql": {
               "target": "Package",
