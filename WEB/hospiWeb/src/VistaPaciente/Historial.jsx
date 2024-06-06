@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Historial = () => {
     const [data, setData] = useState([]);
